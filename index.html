@@ -3,11 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Khoá Writing - Lớp Anh thầy Kết</title>
+<title>Essay Writing - Lớp Anh thầy Kết</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
 
 <style>
+/* ===== BODY ===== */
 body {
   font-family: Arial, sans-serif;
   background-color: #fff8f0;
@@ -16,15 +17,48 @@ body {
   text-align: center;
 }
 
+/* ===== HEADER ===== */
 header {
   background-color: #ffd6ba;
-  padding: 25px;
-  font-size: 32px;
+  padding: 15px 20px;
   font-weight: bold;
   color: #7a4e3e;
-  position: relative;
+  display: flex;
+  flex-wrap: wrap;       
+  align-items: center;
+  justify-content: space-between;  /* Left luôn bên trái, center căn giữa */
+  gap: 15px;
 }
 
+/* Left: icon + home text */
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 0 0 auto;          /* không bị co lại */
+}
+
+.header-left a {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 24px;
+  color: #7a4e3e;
+  text-decoration: none;
+}
+
+.header-left a i {
+  font-size: 28px;
+}
+
+/* Center title */
+.header-center {
+  flex: 1;                 /* chiếm phần còn lại để căn giữa */
+  text-align: center;
+  font-size: 32px;
+}
+
+/* ===== TOP SELECT ===== */
 .top-select {
   display: flex;
   justify-content: flex-start;
@@ -39,6 +73,7 @@ select {
   background-color: #e3fdfd;
 }
 
+/* ===== WORD LIST ===== */
 .word-list {
   width: 85%;
   margin: 20px auto;
@@ -72,6 +107,7 @@ select {
   cursor: pointer;
 }
 
+/* ===== REVIEW BOX ===== */
 .review-box {
   margin: 40px auto;
   width: 70%;
@@ -122,6 +158,7 @@ select {
   background-color: #ffb3ba;
 }
 
+/* ===== FOOTER ===== */
 footer {
   font-size: 22px;
   margin-top: 40px;
@@ -130,7 +167,7 @@ footer {
   background-color: #fff0e1;
 }
 
-/* ---- Writing section mới ---- */
+/* ===== WRITING SECTION ===== */
 .writing-section {
   width: 100%;
   display: flex;
@@ -150,10 +187,10 @@ footer {
 }
 
 #essayText {
- width: 100%;
+  width: 100%;
   height: 500px;
   font-size: 20px;
-  padding: -10px;
+  padding: 10px;
   border-radius: 10px;
   border: 2px solid #a0e7e5;
   resize: vertical;
@@ -161,6 +198,7 @@ footer {
   max-height: 800px;
   font-family: Arial, sans-serif; 
 }
+
 #submitEssayBtn {
   align-self: flex-end;
   margin-top: 10px;
@@ -175,7 +213,7 @@ footer {
   background-color: #ffb3ba;
 }
 
-/* ---- Pháo hoa ---- */
+/* ===== FIREWORK ===== */
 .firework {
   position: absolute;
   width: 6px;
@@ -189,18 +227,36 @@ footer {
   0% { transform: scale(1); opacity: 1; }
   100% { transform: scale(5); opacity: 0; }
 }
+
+/* ===== MEDIA QUERY ===== */
+@media (max-width: 480px) {
+  header {
+    padding: 10px 15px;
+  }
+  .header-left a {
+    font-size: 18px;
+  }
+  .header-left a i {
+    font-size: 20px;
+  }
+  .header-center {
+    font-size: 22px;
+  }
+}
 </style>
 </head>
 
 <body>
 
 <header>
-  <a href="https://ketng91.github.io/lopanhthayket/"
-     style="position:absolute; left:20px; top:20px; font-size:20px; 
-            color:#7a4e3e; text-decoration:none;">
-    <i class="fa-solid fa-house"></i> Lớp Anh thầy Kết
-  </a>
-  Khoá học Writing
+  <div class="header-left">
+    <a href="https://ketng91.github.io/lopanhthayket/">
+      <i class="fa-solid fa-house"></i> Lớp Anh thầy Kết
+    </a>
+  </div>
+  <div class="header-center">
+    Essay Writing
+  </div>
 </header>
 
 <div class="top-select">
@@ -237,6 +293,16 @@ footer {
 </div>
 
 <footer>Chúc mừng bạn đã hoàn thành bài học!</footer>
+
+<script>
+function know(){ alert("Đã biết"); }
+function dontKnow(){ alert("Chưa biết"); }
+function nextWord(){ alert("Tiếp theo"); }
+function submitEssay(){ alert("Bài essay đã được gửi!"); }
+</script>
+
+</body>
+</html>
 
 <script>
 /********** DATA từ vựng **********/
