@@ -327,6 +327,18 @@ footer {
     Thực hành Writing Essay
   </div>
 
+
+<div style="font-size:24px; color:#004d61; font-weight:bold; margin-bottom:10px;">
+  <span id="timer">00:00</span>
+  <button onclick="startTimer()" style="margin-left:12px; padding:6px 12px; border:none; background:#a0e7e5; border-radius:6px; cursor:pointer;">
+    Start
+  </button>
+  <button onclick="resetTimer()" style="margin-left:5px; padding:6px 12px; border:none; background:#ffb3ba; border-radius:6px; cursor:pointer;">
+    Reset
+  </button>
+</div>
+
+
   <div class="writing-section">
     <div id="essayPrompt">Chọn topic để hiển thị đề essay.</div>
     <textarea id="essayText" placeholder="Viết bài essay ở đây..."></textarea>
@@ -362,6 +374,40 @@ sortOptionsAZ();
 selectEl.addEventListener("mousedown", sortOptionsAZ);
 selectEl.addEventListener("touchstart", sortOptionsAZ);
 </script>
+
+
+<script>
+let sec = 0;
+let min = 0;
+let t = null;
+
+function updateTimer(){
+  sec++;
+  if(sec === 60){
+    sec = 0;
+    min++;
+  }
+  document.getElementById("timer").innerText =
+    (min<10?"0":"")+min+":"+(sec<10?"0":"")+sec;
+}
+
+function startTimer(){
+  if(t !== null) return;
+  sec = 0;
+  min = 0;
+  document.getElementById("timer").innerText = "00:00";
+  t = setInterval(updateTimer,1000);
+}
+
+function resetTimer(){
+  clearInterval(t);
+  t = null;
+  sec = 0;
+  min = 0;
+  document.getElementById("timer").innerText = "00:00";
+}
+</script>
+
 
 </body>
 </html>
