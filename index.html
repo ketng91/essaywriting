@@ -284,8 +284,18 @@ footer {
 
 <div class="top-select">
   <select id="wordList">
-    <option value="1">Environment</option>
+    <option value="1">Environment 1</option>
     <option value="2">Education</option>
+    <option value="3">Media 1</option>
+    <option value="4">Media 2</option>
+    <option value="5">Environment 2</option>
+    <option value="6">Economy 1</option>
+    <option value="7">Economy 2</option>
+    <option value="8">Health 1</option>
+    <option value="9">Health 2</option>
+    <option value="10">Art & Culture 1</option>
+    <option value="11">Art & Culture 2</option>
+
   </select>
 </div>
 
@@ -322,6 +332,26 @@ function know(){ alert("Đã biết"); }
 function dontKnow(){ alert("Chưa biết"); }
 function nextWord(){ alert("Tiếp theo"); }
 function submitEssay(){ alert("Bài essay đã được gửi!"); }
+</script>
+<script>
+const selectEl = document.getElementById("wordList");
+
+// Hàm sắp xếp options theo alphabet A-Z
+function sortOptionsAZ() {
+  const opts = Array.from(selectEl.options);
+
+  opts.sort((a, b) => a.text.localeCompare(b.text));
+
+  selectEl.innerHTML = "";
+  opts.forEach(o => selectEl.appendChild(o));
+}
+
+// Sắp xếp lần đầu khi load
+sortOptionsAZ();
+
+// Sắp xếp lại mỗi lần bấm mở dropdown (desktop + mobile đều nhận)
+selectEl.addEventListener("mousedown", sortOptionsAZ);
+selectEl.addEventListener("touchstart", sortOptionsAZ);
 </script>
 
 </body>
@@ -374,8 +404,210 @@ const data = {
 { en:"scholarship /ˈskɒl.ɚ.ʃɪp/", vn:"học bổng", tick:false },
 { en:"student debt /ˈstjuː.dənt det/", vn:"nợ sinh viên", tick:false },
 { en:"educational inequality /ˌedʒ.əˈkeɪ.ʃən.əl ˌɪn.ɪˈkwɒl.ɪ.ti/", vn:"bất bình đẳng giáo dục", tick:false },
+  ],
+  3: [
+{ en:"advertising campaign /ˈædvərtaɪzɪŋ kæmˈpeɪn/", vn:"chiến dịch quảng cáo", tick:false },
+{ en:"boost sales /buːst seɪlz/", vn:"tăng doanh số", tick:false },
+{ en:"consumer behaviour /kənˈsjuːmər bɪˈheɪ.vjər/", vn:"hành vi người tiêu dùng", tick:false },
+{ en:"impulse buying /ˈɪmpʌls ˈbaɪɪŋ/", vn:"mua hàng bốc đồng", tick:false },
+{ en:"brand awareness /brænd əˈwer.nəs/", vn:"nhận diện thương hiệu", tick:false },
+{ en:"celebrity endorsement /səˈleb.rə.ti ɪnˈdɔːrs.mənt/", vn:"quảng cáo bằng người nổi tiếng", tick:false },
+{ en:"target audience /ˈtɑːr.ɡɪt ˈɔː.di.əns/", vn:"đối tượng mục tiêu", tick:false },
+{ en:"digital marketing /ˈdɪdʒ.ə.t̬əl ˈmɑːr.kɪ.t̬ɪŋ/", vn:"tiếp thị số", tick:false },
+{ en:"persuasive techniques /pərˈsweɪ.sɪv tekˈniːks/", vn:"kỹ thuật thuyết phục", tick:false },
+{ en:"materialism /məˈtɪə.ri.ə.lɪz.əm/", vn:"chủ nghĩa vật chất", tick:false },
+{ en:"consumerism /kənˈsuː.mər.ɪ.zəm/", vn:"chủ nghĩa tiêu dùng", tick:false },
+{ en:"manipulate customers /məˈnɪp.jə.leɪt ˈkʌs.tə.mərz/", vn:"thao túng khách hàng", tick:false },
+{ en:"exaggerated claims /ɪɡˈzædʒ.ə.reɪ.tɪd kleɪmz/", vn:"lời tuyên bố phóng đại", tick:false },
+{ en:"misleading information /ˌmɪsˈliː.dɪŋ ˌɪn.fɚˈmeɪ.ʃən/", vn:"thông tin gây hiểu lầm", tick:false },
+{ en:"brand loyalty /brænd ˈlɔɪ.əl.ti/", vn:"lòng trung thành với thương hiệu", tick:false },
+{ en:"overconsumption /ˌoʊ.vɚ.kənˈsʌmp.ʃən/", vn:"tiêu thụ quá mức", tick:false },
+{ en:"disposable income /dɪˈspoʊ.zə.bəl ˈɪn.kʌm/", vn:"thu nhập khả dụng", tick:false },
+{ en:"product placement /ˈprɒd.ʌkt ˈpleɪs.mənt/", vn:"quảng cáo gài sản phẩm", tick:false },
+{ en:"market saturation /ˈmɑːr.kɪt ˌsætʃ.əˈreɪ.ʃən/", vn:"bão hòa thị trường", tick:false },
+{ en:"compulsive spending /kəmˈpʌl.sɪv ˈspen.dɪŋ/", vn:"chi tiêu thiếu kiểm soát", tick:false }
+  ],
+  4: [
+{ en:"media intrusion /ˈmiː.di.ə ɪnˈtruː.ʒən/", vn:"sự xâm phạm của truyền thông", tick:false },
+{ en:"public scrutiny /ˈpʌb.lɪk ˈskruː.t̬ən.i/", vn:"sự soi xét của công chúng", tick:false },
+{ en:"celebrity status /səˈleb.rə.ti ˈsteɪ.t̬əs/", vn:"địa vị người nổi tiếng", tick:false },
+{ en:"personal boundaries /ˈpɝː.sən.əl ˈbaʊn.driːz/", vn:"ranh giới cá nhân", tick:false },
+{ en:"invasion of privacy /ɪnˈveɪ.ʒən əv ˈpraɪ.və.si/", vn:"xâm phạm đời tư", tick:false },
+{ en:"tabloid newspaper /ˈtæb.lɔɪd ˈnuːzˌpeɪ.pɚ/", vn:"báo lá cải", tick:false },
+{ en:"paparazzi /ˌpɑː.pəˈrɑːt.si/", vn:"nhiếp ảnh săn tin", tick:false },
+{ en:"public interest /ˌpʌb.lɪk ˈɪn.trɪst/", vn:"lợi ích công chúng", tick:false },
+{ en:"media ethics /ˈmiː.di.ə ˈeθ.ɪks/", vn:"đạo đức báo chí", tick:false },
+{ en:"freedom of press /ˈfriː.dəm əv pres/", vn:"tự do báo chí", tick:false },
+{ en:"sensational reporting /senˈseɪ.ʃən.əl rɪˈpɔːr.t̬ɪŋ/", vn:"đưa tin giật gân", tick:false },
+{ en:"scandal-mongering /ˈskæn.dəl ˈmʌŋ.ɡər.ɪŋ/", vn:"đưa chuyện scandal", tick:false },
+{ en:"public perception /ˈpʌb.lɪk pɚˈsep.ʃən/", vn:"nhận thức của công chúng", tick:false },
+{ en:"exploit fame /ɪkˈsplɔɪt feɪm/", vn:"lợi dụng danh tiếng", tick:false },
+{ en:"stardom /ˈstɑːr.dəm/", vn:"sự nổi tiếng/ngôi sao", tick:false },
+{ en:"media frenzy /ˈmiː.di.ə ˈfren.zi/", vn:"sự cuồng nhiệt của truyền thông", tick:false },
+{ en:"defamation /ˌdef.əˈmeɪ.ʃən/", vn:"phỉ báng, bôi nhọ", tick:false },
+{ en:"public persona /ˈpɝː.sə.noʊ.nə/", vn:"hình tượng công chúng", tick:false },
+{ en:"breach of confidentiality /briːtʃ əv ˌkɒn.fɪˌden.ʃiˈæl.ə.t̬i/", vn:"vi phạm quyền bảo mật", tick:false },
+{ en:"self-regulation /ˌself ˌreɡ.jəˈleɪ.ʃən/", vn:"tự điều chỉnh (của ngành truyền thông)", tick:false }
+  ],
+  5: [
+{ en:"biodiversity loss /ˌbaɪ.oʊ.daɪˈvɜːr.sə.ti lɒs/", vn:"mất đa dạng sinh học", tick:false },
+{ en:"habitat destruction /ˈhæb.ɪ.tæt dɪˈstrʌk.ʃən/", vn:"tàn phá môi trường sống", tick:false },
+{ en:"endangered species /ɪnˈdeɪn.dʒɚd ˈspiː.ʃiːz/", vn:"loài có nguy cơ tuyệt chủng", tick:false },
+{ en:"ecosystem imbalance /ˈiː.koʊˌsɪs.təm ɪmˈbæl.əns/", vn:"mất cân bằng hệ sinh thái", tick:false },
+{ en:"illegal wildlife trade /ɪˈliː.ɡəl ˈwaɪld.laɪf treɪd/", vn:"buôn bán động vật hoang dã trái phép", tick:false },
+{ en:"deforestation /diːˌfɒr.əˈsteɪ.ʃən/", vn:"phá rừng", tick:false },
+{ en:"pollutant emission /pəˈluː.tənt ɪˈmɪʃ.ən/", vn:"phát thải chất gây ô nhiễm", tick:false },
+{ en:"overfishing /ˌoʊ.vɚˈfɪʃ.ɪŋ/", vn:"đánh bắt cá quá mức", tick:false },
+{ en:"climate disruption /ˈklaɪ.mət dɪsˈrʌp.ʃən/", vn:"gián đoạn khí hậu", tick:false },
+{ en:"species extinction /ˈspiː.ʃiːz ɪkˈstɪŋk.ʃən/", vn:"tuyệt chủng loài", tick:false },
+{ en:"conservation efforts /ˌkɒn.sərˈveɪ.ʃən ˈef.ərts/", vn:"nỗ lực bảo tồn", tick:false },
+{ en:"marine ecosystem /məˈriːn ˈiː.koʊˌsɪs.təm/", vn:"hệ sinh thái biển", tick:false },
+{ en:"environmental restoration /ɪnˌvaɪ.rənˈmen.təl ˌres.təˈreɪ.ʃən/", vn:"khôi phục môi trường", tick:false },
+{ en:"sustainable practices /səˈsteɪ.nə.bəl ˈpræk.tɪ.sɪz/", vn:"hoạt động bền vững", tick:false },
+{ en:"protected areas /prəˈtek.tɪd ˈer.i.əz/", vn:"khu vực được bảo vệ", tick:false },
+{ en:"reforestation /ˌriː.fɔːr.əˈsteɪ.ʃən/", vn:"trồng rừng lại", tick:false },
+{ en:"eco-conscious /ˈiː.koʊˌkɑːn.ʃəs/", vn:"có ý thức môi trường", tick:false },
+{ en:"environmental legislation /ɪnˌvaɪ.rənˈmen.təl ˌledʒ.ɪˈsleɪ.ʃən/", vn:"luật bảo vệ môi trường", tick:false },
+{ en:"wildlife preservation /ˈwaɪld.laɪf ˌprez.ɚˈveɪ.ʃən/", vn:"bảo vệ động vật hoang dã", tick:false },
+{ en:"human encroachment /ˈhjuː.mən ɪnˈkroʊtʃ.mənt/", vn:"sự xâm lấn của con người", tick:false }
+  ],
+  6: [
+{ en:"instant gratification /ˈɪn.stənt ˌɡræt̬.ə.fəˈkeɪ.ʃən/", vn:"thỏa mãn tức thì", tick:false },
+{ en:"on-demand culture /ˌɒn dɪˈmænd ˈkʌl.tʃər/", vn:"văn hóa theo yêu cầu", tick:false },
+{ en:"technological advancement /ˌtek.nəˈlɑː.dʒɪ.kəl ədˈvæns.mənt/", vn:"tiến bộ công nghệ", tick:false },
+{ en:"high-speed internet /ˌhaɪ spiːd ˈɪn.t̬ɚ.net/", vn:"internet tốc độ cao", tick:false },
+{ en:"digital convenience /ˈdɪdʒ.ə.t̬əl kənˈviː.ni.əns/", vn:"sự tiện lợi kỹ thuật số", tick:false },
+{ en:"impatient mindset /ɪmˈpeɪ.ʃənt ˈmaɪnd.set/", vn:"tư duy thiếu kiên nhẫn", tick:false },
+{ en:"fast-paced lifestyle /fæst-peɪst ˈlaɪf.staɪl/", vn:"lối sống nhanh", tick:false },
+{ en:"consumer expectations /kənˈsjuː.mər ˌek.spekˈteɪ.ʃənz/", vn:"kỳ vọng của người tiêu dùng", tick:false },
+{ en:"real-time information /ˌriːəlˈtaɪm ˌɪn.fɚˈmeɪ.ʃən/", vn:"thông tin theo thời gian thực", tick:false },
+{ en:"short attention span /ʃɔːrt əˈten.ʃən spæn/", vn:"khả năng tập trung ngắn", tick:false },
+{ en:"instant access /ˈɪn.stənt ˈæk.ses/", vn:"truy cập ngay lập tức", tick:false },
+{ en:"time efficiency /taɪm ɪˈfɪʃ.ən.si/", vn:"hiệu quả sử dụng thời gian", tick:false },
+{ en:"spoiled by convenience /spɔɪld baɪ kənˈviː.ni.əns/", vn:"bị nuông chiều bởi sự tiện lợi", tick:false },
+{ en:"online delivery services /ˈɒn.laɪn dɪˈlɪv.ər.i ˈsɝː.vɪs.ɪz/", vn:"dịch vụ giao hàng trực tuyến", tick:false },
+{ en:"microwave mentality /ˈmaɪ.kroʊ.weɪv menˈtæl.ə.t̬i/", vn:"tâm lý muốn mọi thứ ngay lập tức", tick:false },
+{ en:"attention economy /əˈten.ʃən ɪˈkɑː.nə.mi/", vn:"nền kinh tế sự chú ý", tick:false },
+{ en:"reduced tolerance for waiting /rɪˈduːst ˈtɑː.lɚ.əns fɔːr ˈweɪ.t̬ɪŋ/", vn:"giảm khả năng chịu đựng sự chờ đợi", tick:false },
+{ en:"delayed gratification /dɪˈleɪd ˌɡræt̬.ə.fəˈkeɪ.ʃən/", vn:"thỏa mãn trì hoãn", tick:false },
+{ en:"negative social implications /ˈneɡ.ə.t̬ɪv ˈsoʊ.ʃəl ˌɪmpləˈkeɪʃənz/", vn:"hệ lụy xã hội tiêu cực", tick:false },
+{ en:"psychological dependency /ˌsaɪ.kəˈlɑː.dʒɪ.kəl dɪˈpen.dən.si/", vn:"sự phụ thuộc tâm lý", tick:false }
+  ],
+  7: [
+{ en:"financial literacy /faɪˈnæn.ʃəl ˈlɪt̬.ə.rə.si/", vn:"kiến thức tài chính", tick:false },
+{ en:"long-term savings /lɔːŋ tɝːm ˈseɪ.vɪŋz/", vn:"tiết kiệm dài hạn", tick:false },
+{ en:"financial discipline /faɪˈnæn.ʃəl ˈdɪs.ə.plɪn/", vn:"kỷ luật tài chính", tick:false },
+{ en:"budget management /ˈbʌdʒ.ɪt ˈmæn.ɪdʒ.mənt/", vn:"quản lý ngân sách", tick:false },
+{ en:"emergency fund /iˈmɝː.dʒən.si fʌnd/", vn:"quỹ khẩn cấp", tick:false },
+{ en:"investment portfolio /ɪnˈvest.mənt pɔːrtˈfoʊ.li.oʊ/", vn:"danh mục đầu tư", tick:false },
+{ en:"retirement planning /rɪˈtaɪr.mənt ˈplæn.ɪŋ/", vn:"kế hoạch nghỉ hưu", tick:false },
+{ en:"financial stability /faɪˈnæn.ʃəl stəˈbɪl.ə.t̬i/", vn:"ổn định tài chính", tick:false },
+{ en:"economic security /ˌek.əˈnɑː.mɪk səˈkjʊr.ə.t̬i/", vn:"an toàn kinh tế", tick:false },
+{ en:"future prosperity /ˈfjuː.tʃɚ prɑːˈsper.ə.t̬i/", vn:"thịnh vượng trong tương lai", tick:false },
+{ en:"delayed gratification /dɪˈleɪd ˌɡræt̬.ə.fɪˈkeɪ.ʃən/", vn:"sự trì hoãn thỏa mãn", tick:false },
+{ en:"overspending habit /ˌoʊ.vɚˈspen.dɪŋ ˈhæb.ɪt/", vn:"thói quen tiêu xài quá mức", tick:false },
+{ en:"financial responsibility /faɪˈnæn.ʃəl rɪˌspɑːn.səˈbɪl.ə.t̬i/", vn:"trách nhiệm tài chính", tick:false },
+{ en:"saving culture /ˈseɪ.vɪŋ ˈkʌl.tʃər/", vn:"văn hóa tiết kiệm", tick:false },
+{ en:"short-term desires /ʃɔːrt tɝːm dɪˈzaɪərz/", vn:"mong muốn ngắn hạn", tick:false },
+{ en:"financial independence /faɪˈnæn.ʃəl ˌɪn.dɪˈpen.dəns/", vn:"tự chủ tài chính", tick:false },
+{ en:"secure future /sɪˈkjʊr ˈfjuː.tʃɚ/", vn:"tương lai an toàn", tick:false },
+{ en:"wealth accumulation /welθ əˌkjuː.mjəˈleɪ.ʃən/", vn:"tích lũy tài sản", tick:false },
+{ en:"impulse purchases /ˈɪm.pʌls ˈpɝː.tʃə.sɪz/", vn:"mua sắm bốc đồng", tick:false },
+{ en:"financial pressure /faɪˈnæn.ʃəl ˈpreʃ.ɚ/", vn:"áp lực tài chính", tick:false }
+  ],
+  8: [
+{ en:"obesity epidemic /oʊˈbiː.sə.t̬i ˌep.ɪˈdem.ɪk/", vn:"dịch béo phì", tick:false },
+{ en:"fattening foods /ˈfæt̬.ən.ɪŋ fuːdz/", vn:"đồ ăn gây béo", tick:false },
+{ en:"processed food /ˈprɑː.sest fuːd/", vn:"thực phẩm chế biến", tick:false },
+{ en:"sugar tax /ˈʃʊɡ.ɚ tæks/", vn:"thuế đường", tick:false },
+{ en:"price intervention /praɪs ˌɪn.t̬ɚˈven.ʃən/", vn:"can thiệp giá", tick:false },
+{ en:"calorie intake /ˈkæl.ɚ.i ˈɪn.teɪk/", vn:"lượng calo nạp vào", tick:false },
+{ en:"sedentary lifestyle /ˈsed.ən.ter.i ˈlaɪf.staɪl/", vn:"lối sống ít vận động", tick:false },
+{ en:"public health crisis /ˈpʌb.lɪk helθ ˈkraɪ.sɪs/", vn:"khủng hoảng sức khỏe cộng đồng", tick:false },
+{ en:"nutritious alternatives /nuːˈtrɪʃ.əs ɔːlˈtɝː.nə.t̬ɪvz/", vn:"lựa chọn dinh dưỡng thay thế", tick:false },
+{ en:"healthy eating habits /ˈhel.θi ˈiː.t̬ɪŋ ˈhæb.ɪts/", vn:"thói quen ăn uống lành mạnh", tick:false },
+{ en:"food affordability /fuːd əˌfɔːr.dəˈbɪl.ə.t̬i/", vn:"khả năng chi trả cho thực phẩm", tick:false },
+{ en:"government subsidy /ˈɡʌv.ɚn.mənt ˈsʌb.sə.di/", vn:"trợ cấp của chính phủ", tick:false },
+{ en:"behavioural change /bɪˈheɪ.vjɚ.əl tʃeɪndʒ/", vn:"thay đổi hành vi", tick:false },
+{ en:"food advertising /fuːd ˈæd.vɚ.taɪ.zɪŋ/", vn:"quảng cáo thực phẩm", tick:false },
+{ en:"nutrition education /nuːˈtrɪʃ.ən ˌedʒ.ʊˈkeɪ.ʃən/", vn:"giáo dục về dinh dưỡng", tick:false },
+{ en:"public awareness campaign /ˈpʌb.lɪk əˈwer.nəs kæmˌpeɪn/", vn:"chiến dịch nâng cao nhận thức cộng đồng", tick:false },
+{ en:"unhealthy food consumption /ʌnˈhel.θi fuːd kənˈsʌmp.ʃən/", vn:"việc tiêu thụ thực phẩm không lành mạnh", tick:false },
+{ en:"financial deterrent /faɪˈnæn.ʃəl dɪˈtɜːr.ənt/", vn:"rào cản tài chính", tick:false },
+{ en:"food policy reform /fuːd ˈpɑː.lə.si rɪˈfɔːrm/", vn:"cải cách chính sách thực phẩm", tick:false },
+{ en:"preventive healthcare /prɪˈven.t̬ɪv ˈhelθ.ker/", vn:"chăm sóc sức khỏe phòng ngừa", tick:false }
+  ],
+  9: [
+{ en:"nutritional guidelines", vn:"hướng dẫn dinh dưỡng", tick:false },
+{ en:"public health crisis", vn:"khủng hoảng sức khỏe cộng đồng", tick:false },
+{ en:"dietary regulations", vn:"quy định về chế độ ăn", tick:false },
+{ en:"processed food", vn:"thức ăn chế biến sẵn", tick:false },
+{ en:"artificial additives", vn:"chất phụ gia nhân tạo", tick:false },
+{ en:"sugar-sweetened beverages", vn:"đồ uống nhiều đường", tick:false },
+{ en:"non-communicable diseases", vn:"bệnh không truyền nhiễm", tick:false },
+{ en:"obesity epidemic", vn:"dịch béo phì", tick:false },
+{ en:"food labeling policies", vn:"chính sách ghi nhãn thực phẩm", tick:false },
+{ en:"diet-related illnesses", vn:"bệnh liên quan đến chế độ ăn uống", tick:false },
+{ en:"health awareness campaigns", vn:"chiến dịch nâng cao nhận thức sức khỏe", tick:false },
+{ en:"government intervention", vn:"sự can thiệp của chính phủ", tick:false },
+{ en:"consumer autonomy", vn:"quyền tự chủ của người tiêu dùng", tick:false },
+{ en:"regulatory framework", vn:"khung pháp lý", tick:false },
+{ en:"fiscal measures", vn:"biện pháp tài khóa", tick:false },
+{ en:"excise tax on unhealthy foods", vn:"thuế tiêu thụ đặc biệt đối với thực phẩm không lành mạnh", tick:false },
+{ en:"mandatory restrictions", vn:"quy định bắt buộc hạn chế", tick:false },
+{ en:"health-conscious choices", vn:"lựa chọn có ý thức về sức khỏe", tick:false },
+{ en:"food availability and affordability", vn:"tính sẵn có và giá cả của thực phẩm", tick:false },
+{ en:"long-term health consequences", vn:"hệ quả sức khỏe lâu dài", tick:false }
+  ],
+  10: [
+{ en:"curate /ˈkjʊr.eɪt/", vn:"tổ chức, biên soạn trưng bày", tick:false },
+{ en:"artifact /ˈɑːr.t̬ə.fækt/", vn:"hiện vật", tick:false },
+{ en:"historical preservation /hɪˈstɔːr.ɪ.kəl ˌprez.ərˈveɪ.ʃən/", vn:"bảo tồn lịch sử", tick:false },
+{ en:"cultural heritage /ˈkʌl.tʃər.əl ˈher.ɪ.tɪdʒ/", vn:"di sản văn hoá", tick:false },
+{ en:"immersive exhibition /ɪˈmɝː.sɪv ˌek.səˈbɪʃ.ən/", vn:"triển lãm tạo cảm giác đắm chìm", tick:false },
+{ en:"interactive display /ˌɪn.t̬ɚˈræk.tɪv dɪˈspleɪ/", vn:"trưng bày tương tác", tick:false },
+{ en:"enthral visitors /ɪnˈθrɑːl ˈvɪz.ɪ.tərz/", vn:"mê hoặc/thu hút khách tham quan", tick:false },
+{ en:"educational mission /ˌedʒ.əˈkeɪ.ʃən.əl ˈmɪʃ.ən/", vn:"sứ mệnh giáo dục", tick:false },
+{ en:"transmit knowledge /trænzˈmɪt ˈnɑː.lɪdʒ/", vn:"truyền tải kiến thức", tick:false },
+{ en:"intellectual enrichment /ˌɪn.təlˈek.tʃu.əl ɪnˈrɪtʃ.mənt/", vn:"bồi dưỡng trí tuệ", tick:false },
+{ en:"public engagement /ˈpʌb.lɪk ɪnˈɡeɪdʒ.mənt/", vn:"sự tham gia của công chúng", tick:false },
+{ en:"visual storytelling /ˈvɪʒ.u.əl ˈstɔːr.i.tel.ɪŋ/", vn:"kể chuyện bằng hình ảnh", tick:false },
+{ en:"conservation effort /ˌkɑːn.sɚˈveɪ.ʃən ˈef.ɚt/", vn:"nỗ lực bảo tồn", tick:false },
+{ en:"digital archive /ˈdɪdʒ.ə.t̬əl ˈɑːr.kaɪv/", vn:"kho tư liệu số", tick:false },
+{ en:"heritage appreciation /ˈher.ɪ.tɪdʒ əˌpriːʃ.iˈeɪ.ʃən/", vn:"trân trọng di sản", tick:false },
+{ en:"visitor engagement /ˈvɪz.ɪ.tər ɪnˈɡeɪdʒ.mənt/", vn:"tương tác của khách tham quan", tick:false },
+{ en:"knowledge dissemination /ˈnɒl.ɪdʒ dɪˌsem.əˈneɪ.ʃən/", vn:"phổ biến kiến thức", tick:false },
+{ en:"hands-on learning /ˌhændzˈɑːn ˈlɝː.nɪŋ/", vn:"học thông qua trải nghiệm trực tiếp", tick:false },
+{ en:"cognitive development /ˈkɑːɡ.nə.t̬ɪv dɪˈvel.əp.mənt/", vn:"phát triển nhận thức", tick:false },
+{ en:"edutainment approach /ˌedʒ.uˈteɪn.mənt əˈproʊtʃ/", vn:"phương thức kết hợp giáo dục và giải trí", tick:false },
+  ],
+  11: [
+{ en:"government subsidy /ˈɡʌv.ən.mənt ˈsʌb.sə.di/", vn:"trợ cấp của chính phủ", tick:false },
+{ en:"public funding /ˈpʌb.lɪk ˈfʌn.dɪŋ/", vn:"nguồn vốn công", tick:false },
+{ en:"state patronage /steɪt ˈpeɪ.trə.nɪdʒ/", vn:"sự bảo trợ của nhà nước", tick:false },
+{ en:"allocate resources /ˈæl.ə.keɪt rɪˈsɔːrsɪz/", vn:"phân bổ nguồn lực", tick:false },
+{ en:"artistic freedom /ɑːrˈtɪs.tɪk ˈfriː.dəm/", vn:"tự do nghệ thuật", tick:false },
+{ en:"cultural enrichment /ˈkʌl.tʃər.əl ɪnˈrɪtʃ.mənt/", vn:"làm phong phú văn hoá", tick:false },
+{ en:"creative industry /kriˈeɪ.t̬ɪv ˈɪn.dəs.tri/", vn:"ngành công nghiệp sáng tạo", tick:false },
+{ en:"philanthropic donation /ˌfɪl.ənˈθrɑː.pɪk doʊˈneɪ.ʃən/", vn:"tài trợ từ thiện", tick:false },
+{ en:"corporate sponsorship /ˈkɔːr.pɚ.ət ˈspɑːn.sɚ.ʃɪp/", vn:"tài trợ từ doanh nghiệp", tick:false },
+{ en:"commercial influence /kəˈmɝː.ʃəl ˈɪn.flu.əns/", vn:"ảnh hưởng thương mại", tick:false },
+{ en:"non-profit organisation /nɑːnˈprɑː.fɪt ˌɔːr.ɡən.aɪˈzeɪ.ʃən/", vn:"tổ chức phi lợi nhuận", tick:false },
+{ en:"grant application /ɡrænt ˌæp.ləˈkeɪ.ʃən/", vn:"đơn xin tài trợ", tick:false },
+{ en:"cultural preservation /ˈkʌl.tʃər.əl ˌprez.ərˈveɪ.ʃən/", vn:"bảo tồn văn hoá", tick:false },
+{ en:"public accountability /ˈpʌb.lɪk əˌkaʊn.t̬əˈbɪl.ə.t̬i/", vn:"trách nhiệm giải trình với công chúng", tick:false },
+{ en:"merit-based selection /ˈmer.ɪt beɪst səˈlek.ʃən/", vn:"lựa chọn dựa trên năng lực", tick:false },
+{ en:"grassroots movement /ˌɡræsˈruːts ˈmuːv.mənt/", vn:"phong trào xuất phát từ cộng đồng", tick:false },
+{ en:"economic constraints /ˌek.əˈnɑː.mɪk kənˈstreɪnts/", vn:"hạn chế kinh tế", tick:false },
+{ en:"cultural identity /ˈkʌl.tʃər.əl aɪˈden.t̬ə.t̬i/", vn:"bản sắc văn hoá", tick:false },
+{ en:"market-driven priorities /ˈmɑːr.kɪt ˌdrɪv.ən praɪˈɔːr.ə.t̬iz/", vn:"ưu tiên dựa trên thị trường", tick:false },
+{ en:"sustainable support model /səˈsteɪ.nə.bəl səˈpɔːrt ˈmɑː.dəl/", vn:"mô hình hỗ trợ bền vững", tick:false },
+  ],
 
-  ]
+
+
+
+
 };
 
 /********** DATA Essay Writing theo topic **********/
@@ -385,7 +617,39 @@ const writingPrompts = {
   ],
   2: [
     { prompt: "Some people believe that university education should be free for everyone. To what extent do you agree or disagree?" },
-  ]
+  ],
+  3: [
+    { prompt: "The main aim of advertising campaigns is to increase the sales of certain products that people don't really need. To what extent do you agree or disagree?" },
+  ],
+  4: [
+    { prompt: "In some countries, celebrities complain about the way the media publicizes their private lives. Some people say that they should accept it as part of their fame. Do you agree or disagree?" },
+  ],
+  5: [
+    { prompt: "Some human activities have negative effects on plant and animal species. Some people think it is too late to do anything about this problem, while others think effective measures can be taken to improve this situation. Discuss both views and give your opinion." },
+  ],
+  6: [
+    { prompt: "Nowadays, people have expectations to get things instantly (news, products, services) and do not want to wait. What are the reasons for this? Is this a positive or negative development?" },
+  ],
+  7: [
+    { prompt: "It is important for everyone, including young people, to save money for their future. To what extent do you agree or disagree with this statement?" },
+  ],
+  8: [
+    { prompt: "More and more people are becoming seriously overweight. Some people say that the price increase of fattening foods will solve this problem. To what extent do you agree or disagree?" },
+  ],
+  9: [
+    { prompt: "Some people think that shops should not be allowed to sell any food or drink that has scientifically been proven to have bad effects on people's health. To what extent do you agree or disagree with this statement?" },
+  ],
+  10: [
+    { prompt: "Some people think that museums should be enjoyable places to entertain people, while others believe that the purpose of museums is to educate. Discuss both views and give your own opinion." },
+  ],
+  11: [
+    { prompt: "Some people think that governments should give financial support to creative artists such as painters and musicians. Others believe that creative artists should be funded by alternative sources. Discuss both views and give your own opinion." },
+  ],
+
+
+
+
+ 
 };
 
 /********** QUẢN LÝ TỪ VỰNG **********/
