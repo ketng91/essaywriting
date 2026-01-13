@@ -52,11 +52,18 @@ header {
 }
 
 /* Center title */
+header {
+  position: relative;
+}
+
 .header-center {
-  flex: 1;                 /* chiếm phần còn lại để căn giữa */
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
   text-align: center;
-  margin-left: -120px; 
   font-size: 32px;
+  margin: 0;
+  white-space: nowrap;
 }
 
 /* ===== TOP SELECT ===== */
@@ -231,6 +238,12 @@ footer {
 
 /* ===== MEDIA QUERY ===== */
 @media (max-width: 480px) {
+
+    .header-center {
+    font-size: 24px;
+  }
+}
+
   header {
     padding: 10px 15px;
   }
