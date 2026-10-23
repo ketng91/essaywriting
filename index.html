@@ -1,359 +1,353 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-<meta charset="UTF-8">
+<meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Essay Writing - Lớp Anh thầy Kết</title>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+<title>Luyện viết câu - Lớp Anh thầy Kết</title>
+
+<!-- Font Awesome cho icon -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
 
 <style>
 /* ===== BODY ===== */
-body {
+body { 
+  margin-left: 4cm; 
+  margin-right: 4cm;
   font-family: Arial, sans-serif;
-  background-color: #fff8f0;
-  margin: 0;
-  padding: 0;
-  text-align: center;
+  padding: 20px;
+  background-color: #f9f9f9;
+  box-sizing: border-box;
 }
 
 /* ===== HEADER ===== */
 header {
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 100%;
   background-color: #ffd6ba;
-  padding: 15px 20px;
-  font-weight: bold;
   color: #7a4e3e;
   display: flex;
-  flex-wrap: wrap;       
+  flex-wrap: wrap;  /* cho phép xuống dòng khi màn hình nhỏ */
   align-items: center;
-  justify-content: space-between;  /* Left luôn bên trái, center căn giữa */
-  gap: 15px;
+  justify-content: space-between;
+  padding: 10px 20px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  z-index: 1000;
+  font-family: Arial, sans-serif;
 }
 
-/* Left: icon + home text */
+/* Left side */
 .header-left {
   display: flex;
   align-items: center;
-  gap: 8px;
-  flex: 0 0 auto;          /* không bị co lại */
+  gap: 10px;
+  font-size: 20px;
 }
-
+.header-left i {
+  font-size: 28px;
+  cursor: pointer;
+}
 .header-left a {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 24px;
-  color: #7a4e3e;
+  color: white;
   text-decoration: none;
 }
-
-.header-left a i {
-  font-size: 28px;
+.header-left .header-text {
+  font-weight: bold;
 }
 
 /* Center title */
-header {
-  position: relative;
-}
-
 .header-center {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  text-align: center;
-  font-size: 32px;
-  margin: 0;
-  white-space: nowrap;
-}
-
-/* ===== TOP SELECT ===== */
-.top-select {
-  display: flex;
-  justify-content: flex-start;
-  margin: 20px 40px;
-}
-
-select {
-  padding: 8px 14px;
-  font-size: 18px;
-  border-radius: 8px;
-  border: 2px solid #a0e7e5;
-  background-color: #e3fdfd;
-}
-
-/* ===== WORD LIST ===== */
-.word-list {
-  width: 85%;
-  margin: 20px auto;
-  background-color: #E0FBE2;
-  border-radius: 10px;
-  padding: 15px;
-  text-align: left;
-  font-size: 22px;
-}
-
-.word-row {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  padding: 6px 10px;
-  border-bottom: 1px dashed #ffb3ba;
-  transition: all .2s ease-in-out;
-}
-.word-row:last-child { border-bottom: none; }
-
-.word-row:hover {
-  background-color: #fffacd;
-  transform: scale(1.02);
-  cursor: pointer;
-}
-
-.tick-box {
-  margin-right: 10px;
-  width: 18px;
-  height: 18px;
-  cursor: pointer;
-}
-
-/* ===== REVIEW BOX ===== */
-.review-box {
-  margin: 40px auto;
-  width: 70%;
-  background-color: #ffe5ec;
-  padding: 25px;
+  font-size: 24px;
   font-weight: bold;
-  color: #607274;
-  font-size: 26px;
-  border-radius: 12px;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.review-box.speaking { background-color: #e0f7ff; }
-
-.display-container {
-  width: 100%;
-  min-height: 100px;
   text-align: center;
+  flex: 1 1 100%; /* chiếm hết dòng khi cần, giúp responsive */
+  margin: 10px 0 0 0;
 }
 
-#answer, #engAnswer {
-  font-size: 22px;
-  color: #7a4e3e;
-  margin-top: 10px;
-  min-height: 30px;
+/* Optional: hover effect */
+.header-left i:hover {
+  color: #ffd700;
 }
 
-.review-buttons {
-  display: flex;
-  justify-content: center;
-  margin-top: 20px;
-  gap: 15px;
-}
-
-.review-buttons button {
-  background-color: #a0e7e5;
-  border: none;
-  padding: 12px 20px;
+/* ====== LIST BOX TOPIC ====== */
+#topicSelect {
   font-size: 20px;
-  border-radius: 8px;
-  cursor: pointer;
-}
-
-.review-buttons button:hover {
-  background-color: #ffb3ba;
-}
-
-/* ===== FOOTER ===== */
-footer {
-  font-size: 22px;
-  margin-top: 40px;
-  padding: 20px;
-  color: #7a4e3e;
-  background-color: #fff0e1;
-}
-
-/* ===== WRITING SECTION ===== */
-.writing-section {
+  padding: 5px 10px;
+  margin-top: 20px; /* tạo khoảng cách so với header cố định */
+  margin-bottom: 20px;
+  background-color: #f0f0f0;  /* xám nhạt */
+  color: #000;
+  border-radius: 6px;
   width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 15px;
+  max-width: 500px;
+}
+/* ====== TOPIC FLEX ====== */
+.topic-wrapper {
+  display: flex;          /* xếp label + select theo hàng */
+  align-items: center;    /* canh giữa theo chiều dọc */
+  gap: 8px;               /* khoảng cách label và select */
+  margin-top: 20px;       /* cách header */
+  margin-bottom: 20px;    /* cách nội dung dưới */
 }
 
-#essayPrompt {
-  background-color: #FBF3D5;
-  border-radius: 10px;
-  padding: 5px;
+#topicSelect {
   font-size: 20px;
-  color: #1B211A;
-  text-align: left;
-  width: 100%;
+  padding: 5px 10px;
+  background-color: #f0f0f0;
+  color: #000;
+  border-radius: 6px;
+  width: auto;            /* vừa nội dung */
+  min-width: 200px;       /* không quá nhỏ */
 }
 
-#essayText {
-  width: 100%;
-  height: 500px;
-  font-size: 20px;
-  padding: 10px;
-  border-radius: 10px;
-  border: 2px solid #a0e7e5;
-  resize: vertical;
-  min-height: 400px;
-  max-height: 800px;
-  font-family: Arial, sans-serif; 
-}
-
-#submitEssayBtn {
-  align-self: flex-end;
-  margin-top: 10px;
-  padding: 12px 20px;
-  font-size: 20px;
-  border-radius: 8px;
-  border: none;
-  background-color: #a0e7e5;
-  cursor: pointer;
-}
-#submitEssayBtn:hover {
-  background-color: #ffb3ba;
-}
-
-/* ===== FIREWORK ===== */
-.firework {
-  position: absolute;
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  pointer-events: none;
-  animation: explode 0.7s ease-out forwards;
-}
-
-@keyframes explode {
-  0% { transform: scale(1); opacity: 1; }
-  100% { transform: scale(5); opacity: 0; }
-}
-
-/* ===== MEDIA QUERY ===== */
+/* Responsive nhỏ hơn 480px */
 @media (max-width: 480px) {
-
-    .header-center {
-    flex-basis: 100%;
-    order: 2;
-    text-align: center;
-    position: static;
-    transform: none;
-    margin-top: 8px;
+  .topic-wrapper {
+    margin-top: 10px;    /* khoảng cách từ header xuống label + select */
+    margin-bottom: 10px;
+    gap: 5px;
+    flex-wrap: wrap;      /* nếu quá nhỏ, label xuống dòng */
   }
-
-  .header-left {
-    order: 1;
+  #topicSelect {
+    font-size: 16px;
+    margin-top: 10px;   /* giảm khoảng cách với header */
+    min-width: 150px;
   }
 }
 
-  header {
-    padding: 10px 15px;
+/* ====== CÂU VN/EN ===== */
+.sentence { 
+  margin-bottom: 20px; 
+  font-size: 25px; 
+  line-height: 1.6; 
+  word-break: break-word;
+}
+.highlight { 
+  font-weight: bold; 
+  padding: 2px 4px; 
+  border-radius: 4px; 
+}
+
+/* ====== INPUT ROW ===== */
+.input-row { 
+  display: flex; 
+  align-items: center; 
+  gap: 8px; 
+  margin-bottom: 8px; 
+  flex-wrap: wrap;
+}
+.input-row input { 
+   padding: 6px; 
+   width: 400px;
+   font-size: 22px;
+   border: 1px solid #ccc;
+   border-radius: 4px;
+}
+.arrow-icon { font-size: 18px; font-weight: bold; }
+.result { margin-left: 10px; font-weight: bold; font-size: 22px; }
+.correct { color: green; font-weight: bold; font-size: 18px; }
+.wrong { color: red; font-weight: bold; font-size: 18px; }
+
+/* ====== FULL ANSWER BOX ===== */
+.full-answer-box { 
+  width: 95%; 
+  max-width: 100%;
+  height: 100px; 
+  padding: 8px; 
+  font-size: 25px;
+  font-family: Arial; 
+  color: blue;
+  border-radius: 10px;
+  border: 5px solid #ccc;
+  box-sizing: border-box;
+}
+.full-submit { padding: 10px 12px; }
+
+/* ====== BUTTONS ===== */
+button { 
+   padding: 8px 0;
+  margin-right: 10px; 
+  cursor: pointer; 
+  border-radius: 5px;
+  border: none;
+  background-color: #a0e7e5; 
+  font-size: 16px;
+  width: 140px;
+  white-space: nowrap;
+  text-align: center;
+  transition: background-color 0.25s ease, transform 0.2s ease;
+}
+button:hover,
+button:active {
+  background-color: #ffb3ba;
+  transform: translateY(-2px);
+}
+
+
+.green { background: lightgreen; }
+.blue { background: lightblue; }
+.yellow { background: khaki; }
+.pink { background: pink; }
+
+/* ====== CHỮ KÝ THẦY KẾT ===== */
+.signature {
+  font-size: 18px;
+  font-family: Arial;
+  font-style: italic;
+  font-weight: bold;
+  color: #004aad;
+  text-align: right;
+  margin-top: -25px;
+}
+
+/* ====== PHÁO HOA ===== */
+.confetti {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 10px;
+  height: 10px;
+  background: red;
+  opacity: 0.9;
+  animation: pop 900ms ease-out forwards;
+}
+@keyframes pop {
+  0% {
+    transform: translate(0, 0) scale(1);
+    opacity: 1;
   }
-  .header-left a {
+  50% {
+    transform: translate(calc(var(--x) * 0.5), calc(var(--y) * 0.4)) scale(1.1);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(var(--x), var(--y)) scale(0.5);
+    opacity: 0;
+  }
+}
+
+/* ====== RESPONSIVE MOBILE ===== */
+@media (max-width: 480px) {
+  body {
+    margin-left: 10px;
+    margin-right: 10px;
+    padding: 10px;
+  }
+header {
+    width: 100vw;          /* chiếm toàn bộ chiều ngang màn hình */
+    margin: 0;             /* bỏ cách lề body */
+    padding: 10px;         /* khoảng cách nội dung bên trong header */
+    box-sizing: border-box; /* đảm bảo padding không làm tràn */
+  }
+  .header-left {
     font-size: 18px;
+    gap: 5px;
+    flex-wrap: wrap;
   }
-  .header-left a i {
-    font-size: 20px;
+  .header-left i {
+    font-size: 24px;
   }
   .header-center {
-    font-size: 22px;
+    font-size: 20px;
+    text-align: center;
+    width: 100%;
+    margin: 5px 0;
+  }
+
+  #topicSelect {
+    font-size: 16px;
+    margin-top: 80px;
+  }
+
+  .sentence {
+    font-size: 18px;
+    line-height: 1.4;
+  }
+
+  .input-row {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 5px;
+    margin-bottom: 10px;
+  }
+  .input-row input {
+    width: 100%;
+    font-size: 16px;
+  }
+  .arrow-icon, .result {
+    font-size: 16px;
+    margin-left: 0;
+  }
+
+  .full-answer-box {
+    width: 100%;
+    font-size: 16px;
+    height: 80px;
+  }
+  .full-submit, #changeBtn {
+    width: 150px;        /* cố định bằng nhau */
+    font-size: 14px;
+    margin-left: 0;      /* canh lề trái */
+  }
+
+ button {
+   width: 140px;
+    font-size: 14px;
+    margin-bottom: 5px;
+    background-color: #a0e7e5;
+    margin-left: 0;
+  }
+  .signature {
+    font-size: 16px;
+    text-align: right;
+    margin-top: 10px;
   }
 }
+
+#fullResult {
+  margin-top: 20px;   /* chỉnh số px tùy thích */
+}
+
+
 </style>
 </head>
 
 <body>
 
+<!-- ===== HEADER ===== -->
 <header>
   <div class="header-left">
-    <a href="https://ketng91.github.io/ielts.lopanhthayket/">
-      <i class="fa-solid fa-house"></i> Lớp Anh thầy Kết
+      <a href="https://ketng91.github.io/ielts.lopanhthayket/">
+      <i class="fa fa-home"></i>
     </a>
+    <span class="header-text">Lớp Anh thầy Kết</span>
   </div>
-  <div class="header-center">
-    Essay Writing
-  </div>
+  <div class="header-center">Khoá Writing</div>
 </header>
 
-<div class="top-select">
-  <select id="wordList">
-    <option value="1">Environment 1</option>
-    <option value="2">Education</option>
-    <option value="3">Media 1</option>
-    <option value="4">Media 2</option>
-    <option value="5">Environment 2</option>
-    <option value="6">Economy 1</option>
-    <option value="7">Economy 2</option>
-    <option value="8">Health 1</option>
-    <option value="9">Health 2</option>
-    <option value="10">Art & Culture 1</option>
-    <option value="11">Art & Culture 2</option>
-    <option value="12">Art & Culture 3</option>
-    <option value="13">Work 1</option>
-    <option value="14">Work 2</option>
-    <option value="15">Crime 1</option>
-
-
-
-
-
-
-  </select>
-</div>
-
-<div class="word-list" id="wordContainer"></div>
-
-<div class="review-box" id="reviewBox">
-  <div class="display-container">
-    <div id="vietWord">Chọn Bộ từ vựng để bắt đầu</div>
-    <div id="answer" style="display:none;"></div>
-  </div>
-  <div class="review-buttons">
-    <button onclick="know()">Đã biết</button>
-    <button onclick="dontKnow()">Chưa biết</button>
-    <button onclick="nextWord()">Tiếp theo</button>
-  </div>
-</div>
-
-<div class="review-box speaking">
-  <div style="font-size:28px; color:#004d61; margin-bottom:10px;">
-    Thực hành Writing Essay
-  </div>
-
-
-<div style="font-size:24px; color:#004d61; font-weight:bold; margin-bottom:10px;">
-  <span id="timer">00:00</span>
-  <button onclick="startTimer()" style="margin-left:12px; padding:6px 12px; border:none; background:#a0e7e5; border-radius:6px; cursor:pointer;">
-    Start
-  </button>
-  <button onclick="resetTimer()" style="margin-left:5px; padding:6px 12px; border:none; background:#ffb3ba; border-radius:6px; cursor:pointer;">
-    Reset
-  </button>
+<!-- ===== CHỌN TOPIC ===== -->
+<div class="topic-wrapper">
+  <label for="topicSelect">Chọn topic:</label>
+  <select id="topicSelect"></select>
 </div>
 
 
-  <div class="writing-section">
-    <div id="essayPrompt">Chọn topic để hiển thị đề essay.</div>
-    <textarea id="essayText" placeholder="Viết bài essay ở đây..."></textarea>
-    <button id="submitEssayBtn" onclick="submitEssay()">Submit</button>
-  </div>
-</div>
+<!-- ===== CÂU VN + EN ===== -->
+<div class="sentence" id="vnSentence"></div>
+<div class="sentence" id="enSentence"></div>
 
-<footer>Chúc mừng bạn đã hoàn thành bài học!</footer>
+<!-- ===== INPUTS ===== -->
+<div id="inputs"></div>
 
-<script>
-function know(){ alert("Đã biết"); }
-function dontKnow(){ alert("Chưa biết"); }
-function nextWord(){ alert("Tiếp theo"); }
-function submitEssay(){ alert("Bài essay đã được gửi!"); }
-</script>
+<textarea id="fullAnswer" class="full-answer-box" placeholder="Type the full sentence..."></textarea><br>
+
+<button id="submitBtn" class="full-submit">Submit</button>
+<button id="changeBtn" style="margin-left:15px;">Next sentence</button>
+
+<div class="signature">Lớp Anh thầy Kết</div>
+<div id="fullResult"></div>
+
 <script>
 const selectEl = document.getElementById("wordList");
 
@@ -376,593 +370,535 @@ selectEl.addEventListener("touchstart", sortOptionsAZ);
 </script>
 
 
-<script>
-let sec = 0;
-let min = 0;
-let t = null;
-
-function updateTimer(){
-  sec++;
-  if(sec === 60){
-    sec = 0;
-    min++;
-  }
-  document.getElementById("timer").innerText =
-    (min<10?"0":"")+min+":"+(sec<10?"0":"")+sec;
-}
-
-function startTimer(){
-  if(t !== null) return;
-  sec = 0;
-  min = 0;
-  document.getElementById("timer").innerText = "00:00";
-  t = setInterval(updateTimer,1000);
-}
-
-function resetTimer(){
-  clearInterval(t);
-  t = null;
-  sec = 0;
-  min = 0;
-  document.getElementById("timer").innerText = "00:00";
-}
-</script>
-<script>
-document.getElementById("wordList").addEventListener("change", () => {
-  resetTimer();     // Dừng và về 00:00
-});
-</script>
-
-
-
-
-
 </body>
 </html>
-
 <script>
-/********** DATA từ vựng **********/
-const data = {
-  1: [
-   { en:"fossil fuels /ˈfɒs.əl fjʊəlz/", vn:"nhiên liệu hóa thạch", tick:false },
-{ en:"renewable energy /rɪˈnjuː.ə.bəl ˈen.ə.dʒi/", vn:"năng lượng tái tạo", tick:false },
-{ en:"solar power /ˈsoʊ.lɚ ˈpaʊ.ɚ/", vn:"năng lượng mặt trời", tick:false },
-{ en:"wind energy /wɪnd ˈen.ə.dʒi/", vn:"năng lượng gió", tick:false },
-{ en:"hydroelectric power /ˌhaɪ.droʊ.ɪˈlek.trɪk ˈpaʊ.ɚ/", vn:"thủy điện", tick:false },
-{ en:"greenhouse gas emissions /ˈɡriːn.haʊs ɡæs ɪˈmɪʃ.ənz/", vn:"khí thải nhà kính", tick:false },
-{ en:"carbon footprint /ˈkɑːr.bən ˈfʊt.prɪnt/", vn:"dấu chân carbon", tick:false },
-{ en:"energy security /ˈen.ə.dʒi sɪˈkjʊr.ə.ti/", vn:"an ninh năng lượng", tick:false },
-{ en:"climate change /ˈklaɪ.mət tʃeɪndʒ/", vn:"biến đổi khí hậu", tick:false },
-{ en:"sustainable development /səˈsteɪ.nə.bəl dɪˈvel.əp.mənt/", vn:"phát triển bền vững", tick:false },
-{ en:"fossil fuel dependency /ˈfɒs.əl fjʊəl dɪˈpen.dən.si/", vn:"sự phụ thuộc vào nhiên liệu hóa thạch", tick:false },
-{ en:"renewable infrastructure /rɪˈnjuː.ə.bəl ˈɪn.frəˌstrʌk.tʃɚ/", vn:"cơ sở hạ tầng năng lượng tái tạo", tick:false },
-{ en:"energy transition /ˈen.ə.dʒi trænsˈɪʃ.ən/", vn:"chuyển đổi năng lượng", tick:false },
-{ en:"air pollution /er pəˈluː.ʃən/", vn:"ô nhiễm không khí", tick:false },
-{ en:"fossil fuel reserves /ˈfɒs.əl fjʊəl rɪˈzɜːrvz/", vn:"dự trữ nhiên liệu hóa thạch", tick:false },
-{ en:"eco-friendly /ˌiː.koʊˈfrend.li/", vn:"thân thiện môi trường", tick:false },
-{ en:"energy efficiency /ˈen.ə.dʒi ɪˈfɪʃ.ən.si/", vn:"hiệu quả năng lượng", tick:false },
-{ en:"global warming /ˌɡloʊ.bəl ˈwɔːr.mɪŋ/", vn:"nóng lên toàn cầu", tick:false },
-{ en:"technological innovation /ˌtek.nəˈlɒdʒ.ɪ.kəl ˌɪn.əˈveɪ.ʃən/", vn:"đổi mới công nghệ", tick:false },
-{ en:"fossil fuel extraction /ˈfɒs.əl fjʊəl ɪkˈstræk.ʃən/", vn:"khai thác nhiên liệu hóa thạch", tick:false }
-
+/* ====== DATA THEO TOPIC ====== */
+const dataByTopic = {
+  "Environment": [
+    {
+      vn: "Các chính phủ nên thực thi các quy định môi trường nghiêm ngặt hơn để giảm thiểu những tác động tiêu cực của nóng lên toàn cầu đối với đa dạng sinh học.",
+      parts: [
+        { vn: "thực thi", en: "implement", color: "green" },
+        { vn: "các quy định môi trường", en: "environmental regulations", color: "yellow" },
+        { vn: "giảm thiểu", en: "mitigate", color: "blue" },
+        { vn: "đa dạng sinh học", en: "biodiversity", color: "pink" }
+      ],
+      full: "Governments should implement stricter environmental regulations to mitigate the adverse effects of global warming on biodiversity."
+    },
+{
+  vn: "Chính phủ nên thực hiện các chính sách để giảm thiểu tác hại về môi trường.",
+  parts: [
+    { vn: "thực hiện", en: "implement", color: "pink" },
+    { vn: "giảm thiểu", en: "minimise", color: "green" },
+    { vn: "tác hại về môi trường", en: "environmental damage", color: "yellow" }
   ],
-  2: [
-    { en:"higher education /ˈhaɪ.ər ˌedʒ.əˈkeɪ.ʃən/", vn:"giáo dục đại học", tick:false },
-{ en:"tuition fees /tjuːˈɪʃ.ən fiːz/", vn:"học phí", tick:false },
-{ en:"financial burden /faɪˈnæn.ʃəl ˈbɜːr.dən/", vn:"gánh nặng tài chính", tick:false },
-{ en:"student loan /ˈstjuː.dənt loʊn/", vn:"khoản vay sinh viên", tick:false },
-{ en:"academic achievement /ˌæk.əˈdem.ɪk əˈtʃiːv.mənt/", vn:"thành tích học tập", tick:false },
-{ en:"equal opportunity /ˌiː.kwəl ˌɑː.pɚˈtuː.nə.t̬i/", vn:"cơ hội bình đẳng", tick:false },
-{ en:"intellectual growth /ˌɪn.t̬əlˈek.tʃu.əl ɡroʊθ/", vn:"sự phát triển trí tuệ", tick:false },
-{ en:"social mobility /ˌsoʊ.ʃəl moʊˈbɪl.ə.ti/", vn:"tính di động xã hội", tick:false },
-{ en:"merit-based /ˈmer.ɪt beɪst/", vn:"dựa trên thành tích", tick:false },
-{ en:"public funding /ˈpʌb.lɪk ˈfʌn.dɪŋ/", vn:"ngân sách công", tick:false },
-{ en:"access to education /ˈæk.ses tuː ˌedʒ.əˈkeɪ.ʃən/", vn:"tiếp cận giáo dục", tick:false },
-{ en:"knowledge acquisition /ˈnɒl.ɪdʒ ˌæk.wɪˈzɪʃ.ən/", vn:"tiếp thu kiến thức", tick:false },
-{ en:"brain drain /ˈbreɪn dreɪn/", vn:"chảy máu chất xám", tick:false },
-{ en:"career prospects /kəˈrɪər ˈprɒs.pekts/", vn:"cơ hội nghề nghiệp", tick:false },
-{ en:"economic disparity /ˌiː.kəˈnɒm.ɪk dɪˈspær.ɪ.ti/", vn:"sự chênh lệch kinh tế", tick:false },
-{ en:"inclusive education /ɪnˈkluː.sɪv ˌedʒ.əˈkeɪ.ʃən/", vn:"giáo dục hòa nhập", tick:false },
-{ en:"lifelong learning /ˌlaɪf.lɒŋ ˈlɜː.nɪŋ/", vn:"học tập suốt đời", tick:false },
-{ en:"scholarship /ˈskɒl.ɚ.ʃɪp/", vn:"học bổng", tick:false },
-{ en:"student debt /ˈstjuː.dənt det/", vn:"nợ sinh viên", tick:false },
-{ en:"educational inequality /ˌedʒ.əˈkeɪ.ʃən.əl ˌɪn.ɪˈkwɒl.ɪ.ti/", vn:"bất bình đẳng giáo dục", tick:false },
+  full: "Governments should implement policies to minimise environmental damage."
+},
+{
+  vn: "Các cơ quan chức năng không nên đánh giá thấp mức độ nghiêm trọng của biến đổi khí hậu.",
+  parts: [
+    { vn: "Các cơ quan chức năng", en: "Authorities", color: "pink" },
+    { vn: "đánh giá thấp", en: "downplay", color: "green" },
+    { vn: "mức độ nghiêm trọng", en: "seriousness", color: "blue" },
+    { vn: "biến đổi khí hậu", en: "climate change", color: "yellow" }
   ],
-  3: [
-{ en:"advertising campaign /ˈædvərtaɪzɪŋ kæmˈpeɪn/", vn:"chiến dịch quảng cáo", tick:false },
-{ en:"boost sales /buːst seɪlz/", vn:"tăng doanh số", tick:false },
-{ en:"consumer behaviour /kənˈsjuːmər bɪˈheɪ.vjər/", vn:"hành vi người tiêu dùng", tick:false },
-{ en:"impulse buying /ˈɪmpʌls ˈbaɪɪŋ/", vn:"mua hàng bốc đồng", tick:false },
-{ en:"brand awareness /brænd əˈwer.nəs/", vn:"nhận diện thương hiệu", tick:false },
-{ en:"celebrity endorsement /səˈleb.rə.ti ɪnˈdɔːrs.mənt/", vn:"quảng cáo bằng người nổi tiếng", tick:false },
-{ en:"target audience /ˈtɑːr.ɡɪt ˈɔː.di.əns/", vn:"đối tượng mục tiêu", tick:false },
-{ en:"digital marketing /ˈdɪdʒ.ə.t̬əl ˈmɑːr.kɪ.t̬ɪŋ/", vn:"tiếp thị số", tick:false },
-{ en:"persuasive techniques /pərˈsweɪ.sɪv tekˈniːks/", vn:"kỹ thuật thuyết phục", tick:false },
-{ en:"materialism /məˈtɪə.ri.ə.lɪz.əm/", vn:"chủ nghĩa vật chất", tick:false },
-{ en:"consumerism /kənˈsuː.mər.ɪ.zəm/", vn:"chủ nghĩa tiêu dùng", tick:false },
-{ en:"manipulate customers /məˈnɪp.jə.leɪt ˈkʌs.tə.mərz/", vn:"thao túng khách hàng", tick:false },
-{ en:"exaggerated claims /ɪɡˈzædʒ.ə.reɪ.tɪd kleɪmz/", vn:"lời tuyên bố phóng đại", tick:false },
-{ en:"misleading information /ˌmɪsˈliː.dɪŋ ˌɪn.fɚˈmeɪ.ʃən/", vn:"thông tin gây hiểu lầm", tick:false },
-{ en:"brand loyalty /brænd ˈlɔɪ.əl.ti/", vn:"lòng trung thành với thương hiệu", tick:false },
-{ en:"overconsumption /ˌoʊ.vɚ.kənˈsʌmp.ʃən/", vn:"tiêu thụ quá mức", tick:false },
-{ en:"disposable income /dɪˈspoʊ.zə.bəl ˈɪn.kʌm/", vn:"thu nhập khả dụng", tick:false },
-{ en:"product placement /ˈprɒd.ʌkt ˈpleɪs.mənt/", vn:"quảng cáo gài sản phẩm", tick:false },
-{ en:"market saturation /ˈmɑːr.kɪt ˌsætʃ.əˈreɪ.ʃən/", vn:"bão hòa thị trường", tick:false },
-{ en:"compulsive spending /kəmˈpʌl.sɪv ˈspen.dɪŋ/", vn:"chi tiêu thiếu kiểm soát", tick:false }
+  full: "Authorities should not downplay the seriousness of climate change."
+},
+{
+  vn: "Các chuyên gia cảnh báo rằng con người thường đánh giá thấp các tác động lâu dài của ô nhiễm không khí.",
+  parts: [
+    { vn: "đánh giá thấp", en: "underestimate", color: "green" },
+    { vn: "các tác động lâu dài", en: "long-term effects", color: "pink" },
+    { vn: "ô nhiễm không khí", en: "air pollution", color: "yellow" }
   ],
-  4: [
-{ en:"media intrusion /ˈmiː.di.ə ɪnˈtruː.ʒən/", vn:"sự xâm phạm của truyền thông", tick:false },
-{ en:"public scrutiny /ˈpʌb.lɪk ˈskruː.t̬ən.i/", vn:"sự soi xét của công chúng", tick:false },
-{ en:"celebrity status /səˈleb.rə.ti ˈsteɪ.t̬əs/", vn:"địa vị người nổi tiếng", tick:false },
-{ en:"personal boundaries /ˈpɝː.sən.əl ˈbaʊn.driːz/", vn:"ranh giới cá nhân", tick:false },
-{ en:"invasion of privacy /ɪnˈveɪ.ʒən əv ˈpraɪ.və.si/", vn:"xâm phạm đời tư", tick:false },
-{ en:"tabloid newspaper /ˈtæb.lɔɪd ˈnuːzˌpeɪ.pɚ/", vn:"báo lá cải", tick:false },
-{ en:"paparazzi /ˌpɑː.pəˈrɑːt.si/", vn:"nhiếp ảnh săn tin", tick:false },
-{ en:"public interest /ˌpʌb.lɪk ˈɪn.trɪst/", vn:"lợi ích công chúng", tick:false },
-{ en:"media ethics /ˈmiː.di.ə ˈeθ.ɪks/", vn:"đạo đức báo chí", tick:false },
-{ en:"freedom of press /ˈfriː.dəm əv pres/", vn:"tự do báo chí", tick:false },
-{ en:"sensational reporting /senˈseɪ.ʃən.əl rɪˈpɔːr.t̬ɪŋ/", vn:"đưa tin giật gân", tick:false },
-{ en:"scandal-mongering /ˈskæn.dəl ˈmʌŋ.ɡər.ɪŋ/", vn:"đưa chuyện scandal", tick:false },
-{ en:"public perception /ˈpʌb.lɪk pɚˈsep.ʃən/", vn:"nhận thức của công chúng", tick:false },
-{ en:"exploit fame /ɪkˈsplɔɪt feɪm/", vn:"lợi dụng danh tiếng", tick:false },
-{ en:"stardom /ˈstɑːr.dəm/", vn:"sự nổi tiếng/ngôi sao", tick:false },
-{ en:"media frenzy /ˈmiː.di.ə ˈfren.zi/", vn:"sự cuồng nhiệt của truyền thông", tick:false },
-{ en:"defamation /ˌdef.əˈmeɪ.ʃən/", vn:"phỉ báng, bôi nhọ", tick:false },
-{ en:"public persona /ˈpɝː.sə.noʊ.nə/", vn:"hình tượng công chúng", tick:false },
-{ en:"breach of confidentiality /briːtʃ əv ˌkɒn.fɪˌden.ʃiˈæl.ə.t̬i/", vn:"vi phạm quyền bảo mật", tick:false },
-{ en:"self-regulation /ˌself ˌreɡ.jəˈleɪ.ʃən/", vn:"tự điều chỉnh (của ngành truyền thông)", tick:false }
+  full: "Experts warn that people often underestimate the long-term effects of air pollution."
+},
+{
+  vn: "Biến đổi khí hậu có thể làm tồi tệ hơn các thiên tai, gây thiệt hại trên diện rộng.",
+  parts: [
+    { vn: "Biến đổi khí hậu", en: "Climate change", color: "pink" },
+    { vn: "làm tồi tệ hơn", en: "worsen", color: "green" },
+    { vn: "các thiên tai", en: "natural disasters", color: "yellow" }
   ],
-  5: [
-{ en:"biodiversity loss /ˌbaɪ.oʊ.daɪˈvɜːr.sə.ti lɒs/", vn:"mất đa dạng sinh học", tick:false },
-{ en:"habitat destruction /ˈhæb.ɪ.tæt dɪˈstrʌk.ʃən/", vn:"tàn phá môi trường sống", tick:false },
-{ en:"endangered species /ɪnˈdeɪn.dʒɚd ˈspiː.ʃiːz/", vn:"loài có nguy cơ tuyệt chủng", tick:false },
-{ en:"ecosystem imbalance /ˈiː.koʊˌsɪs.təm ɪmˈbæl.əns/", vn:"mất cân bằng hệ sinh thái", tick:false },
-{ en:"illegal wildlife trade /ɪˈliː.ɡəl ˈwaɪld.laɪf treɪd/", vn:"buôn bán động vật hoang dã trái phép", tick:false },
-{ en:"deforestation /diːˌfɒr.əˈsteɪ.ʃən/", vn:"phá rừng", tick:false },
-{ en:"pollutant emission /pəˈluː.tənt ɪˈmɪʃ.ən/", vn:"phát thải chất gây ô nhiễm", tick:false },
-{ en:"overfishing /ˌoʊ.vɚˈfɪʃ.ɪŋ/", vn:"đánh bắt cá quá mức", tick:false },
-{ en:"climate disruption /ˈklaɪ.mət dɪsˈrʌp.ʃən/", vn:"gián đoạn khí hậu", tick:false },
-{ en:"species extinction /ˈspiː.ʃiːz ɪkˈstɪŋk.ʃən/", vn:"tuyệt chủng loài", tick:false },
-{ en:"conservation efforts /ˌkɒn.sərˈveɪ.ʃən ˈef.ərts/", vn:"nỗ lực bảo tồn", tick:false },
-{ en:"marine ecosystem /məˈriːn ˈiː.koʊˌsɪs.təm/", vn:"hệ sinh thái biển", tick:false },
-{ en:"environmental restoration /ɪnˌvaɪ.rənˈmen.təl ˌres.təˈreɪ.ʃən/", vn:"khôi phục môi trường", tick:false },
-{ en:"sustainable practices /səˈsteɪ.nə.bəl ˈpræk.tɪ.sɪz/", vn:"hoạt động bền vững", tick:false },
-{ en:"protected areas /prəˈtek.tɪd ˈer.i.əz/", vn:"khu vực được bảo vệ", tick:false },
-{ en:"reforestation /ˌriː.fɔːr.əˈsteɪ.ʃən/", vn:"trồng rừng lại", tick:false },
-{ en:"eco-conscious /ˈiː.koʊˌkɑːn.ʃəs/", vn:"có ý thức môi trường", tick:false },
-{ en:"environmental legislation /ɪnˌvaɪ.rənˈmen.təl ˌledʒ.ɪˈsleɪ.ʃən/", vn:"luật bảo vệ môi trường", tick:false },
-{ en:"wildlife preservation /ˈwaɪld.laɪf ˌprez.ɚˈveɪ.ʃən/", vn:"bảo vệ động vật hoang dã", tick:false },
-{ en:"human encroachment /ˈhjuː.mən ɪnˈkroʊtʃ.mənt/", vn:"sự xâm lấn của con người", tick:false }
+  full: "Climate change can worsen natural disasters, causing widespread damage."
+},
+{
+  vn: "Quy hoạch đô thị kém có thể gây ra tắc nghẽn giao thông và ô nhiễm ở các thành phố lớn.",
+  parts: [
+    { vn: "Quy hoạch đô thị", en: "urban planning", color: "pink" },
+    { vn: "gây ra", en: "cause", color: "green" },
+    { vn: "tắc nghẽn giao thông", en: "traffic congestion", color: "yellow" },
+    { vn: "ô nhiễm", en: "pollution", color: "blue" }
   ],
-  6: [
-{ en:"instant gratification /ˈɪn.stənt ˌɡræt̬.ə.fəˈkeɪ.ʃən/", vn:"thỏa mãn tức thì", tick:false },
-{ en:"on-demand culture /ˌɒn dɪˈmænd ˈkʌl.tʃər/", vn:"văn hóa theo yêu cầu", tick:false },
-{ en:"technological advancement /ˌtek.nəˈlɑː.dʒɪ.kəl ədˈvæns.mənt/", vn:"tiến bộ công nghệ", tick:false },
-{ en:"high-speed internet /ˌhaɪ spiːd ˈɪn.t̬ɚ.net/", vn:"internet tốc độ cao", tick:false },
-{ en:"digital convenience /ˈdɪdʒ.ə.t̬əl kənˈviː.ni.əns/", vn:"sự tiện lợi kỹ thuật số", tick:false },
-{ en:"impatient mindset /ɪmˈpeɪ.ʃənt ˈmaɪnd.set/", vn:"tư duy thiếu kiên nhẫn", tick:false },
-{ en:"fast-paced lifestyle /fæst-peɪst ˈlaɪf.staɪl/", vn:"lối sống nhanh", tick:false },
-{ en:"consumer expectations /kənˈsjuː.mər ˌek.spekˈteɪ.ʃənz/", vn:"kỳ vọng của người tiêu dùng", tick:false },
-{ en:"real-time information /ˌriːəlˈtaɪm ˌɪn.fɚˈmeɪ.ʃən/", vn:"thông tin theo thời gian thực", tick:false },
-{ en:"short attention span /ʃɔːrt əˈten.ʃən spæn/", vn:"khả năng tập trung ngắn", tick:false },
-{ en:"instant access /ˈɪn.stənt ˈæk.ses/", vn:"truy cập ngay lập tức", tick:false },
-{ en:"time efficiency /taɪm ɪˈfɪʃ.ən.si/", vn:"hiệu quả sử dụng thời gian", tick:false },
-{ en:"spoiled by convenience /spɔɪld baɪ kənˈviː.ni.əns/", vn:"bị nuông chiều bởi sự tiện lợi", tick:false },
-{ en:"online delivery services /ˈɒn.laɪn dɪˈlɪv.ər.i ˈsɝː.vɪs.ɪz/", vn:"dịch vụ giao hàng trực tuyến", tick:false },
-{ en:"microwave mentality /ˈmaɪ.kroʊ.weɪv menˈtæl.ə.t̬i/", vn:"tâm lý muốn mọi thứ ngay lập tức", tick:false },
-{ en:"attention economy /əˈten.ʃən ɪˈkɑː.nə.mi/", vn:"nền kinh tế sự chú ý", tick:false },
-{ en:"reduced tolerance for waiting /rɪˈduːst ˈtɑː.lɚ.əns fɔːr ˈweɪ.t̬ɪŋ/", vn:"giảm khả năng chịu đựng sự chờ đợi", tick:false },
-{ en:"delayed gratification /dɪˈleɪd ˌɡræt̬.ə.fəˈkeɪ.ʃən/", vn:"thỏa mãn trì hoãn", tick:false },
-{ en:"negative social implications /ˈneɡ.ə.t̬ɪv ˈsoʊ.ʃəl ˌɪmpləˈkeɪʃənz/", vn:"hệ lụy xã hội tiêu cực", tick:false },
-{ en:"psychological dependency /ˌsaɪ.kəˈlɑː.dʒɪ.kəl dɪˈpen.dən.si/", vn:"sự phụ thuộc tâm lý", tick:false }
+  full: "Poor urban planning can cause traffic congestion and pollution in major cities."
+},
+{
+  vn: "Việc phụ thuộc quá nhiều vào các nhiên liệu hóa thạch có thể dẫn đến sự suy thoái môi trường nghiêm trọng",
+  parts: [
+    { vn: "các nhiên liệu hóa thạch", en: "fossil fuels", color: "pink" },
+    { vn: "dẫn đến", en: "lead to", color: "green" },
+    { vn: "sự suy thoái môi trường", en: "environmental degradation", color: "yellow" }
   ],
-  7: [
-{ en:"financial literacy /faɪˈnæn.ʃəl ˈlɪt̬.ə.rə.si/", vn:"kiến thức tài chính", tick:false },
-{ en:"long-term savings /lɔːŋ tɝːm ˈseɪ.vɪŋz/", vn:"tiết kiệm dài hạn", tick:false },
-{ en:"financial discipline /faɪˈnæn.ʃəl ˈdɪs.ə.plɪn/", vn:"kỷ luật tài chính", tick:false },
-{ en:"budget management /ˈbʌdʒ.ɪt ˈmæn.ɪdʒ.mənt/", vn:"quản lý ngân sách", tick:false },
-{ en:"emergency fund /iˈmɝː.dʒən.si fʌnd/", vn:"quỹ khẩn cấp", tick:false },
-{ en:"investment portfolio /ɪnˈvest.mənt pɔːrtˈfoʊ.li.oʊ/", vn:"danh mục đầu tư", tick:false },
-{ en:"retirement planning /rɪˈtaɪr.mənt ˈplæn.ɪŋ/", vn:"kế hoạch nghỉ hưu", tick:false },
-{ en:"financial stability /faɪˈnæn.ʃəl stəˈbɪl.ə.t̬i/", vn:"ổn định tài chính", tick:false },
-{ en:"economic security /ˌek.əˈnɑː.mɪk səˈkjʊr.ə.t̬i/", vn:"an toàn kinh tế", tick:false },
-{ en:"future prosperity /ˈfjuː.tʃɚ prɑːˈsper.ə.t̬i/", vn:"thịnh vượng trong tương lai", tick:false },
-{ en:"delayed gratification /dɪˈleɪd ˌɡræt̬.ə.fɪˈkeɪ.ʃən/", vn:"sự trì hoãn thỏa mãn", tick:false },
-{ en:"overspending habit /ˌoʊ.vɚˈspen.dɪŋ ˈhæb.ɪt/", vn:"thói quen tiêu xài quá mức", tick:false },
-{ en:"financial responsibility /faɪˈnæn.ʃəl rɪˌspɑːn.səˈbɪl.ə.t̬i/", vn:"trách nhiệm tài chính", tick:false },
-{ en:"saving culture /ˈseɪ.vɪŋ ˈkʌl.tʃər/", vn:"văn hóa tiết kiệm", tick:false },
-{ en:"short-term desires /ʃɔːrt tɝːm dɪˈzaɪərz/", vn:"mong muốn ngắn hạn", tick:false },
-{ en:"financial independence /faɪˈnæn.ʃəl ˌɪn.dɪˈpen.dəns/", vn:"tự chủ tài chính", tick:false },
-{ en:"secure future /sɪˈkjʊr ˈfjuː.tʃɚ/", vn:"tương lai an toàn", tick:false },
-{ en:"wealth accumulation /welθ əˌkjuː.mjəˈleɪ.ʃən/", vn:"tích lũy tài sản", tick:false },
-{ en:"impulse purchases /ˈɪm.pʌls ˈpɝː.tʃə.sɪz/", vn:"mua sắm bốc đồng", tick:false },
-{ en:"financial pressure /faɪˈnæn.ʃəl ˈpreʃ.ɚ/", vn:"áp lực tài chính", tick:false }
+  full: "Overreliance on fossil fuels may lead to severe environmental degradation."
+},
+    {
+      vn: "Việc áp dụng các nguồn năng lượng tái tạo là then chốt để thúc đẩy sự phát triển bền vững và giảm thiểu tác động môi trường lâu dài của các hoạt động công nghiệp.",
+      parts: [
+        { vn: "các nguồn năng lượng tái tạo", en: "renewable energy sources", color: "green" },
+        { vn: "sự phát triển bền vững", en: "sustainable development", color: "yellow" },
+        { vn: "tác động môi trường", en: "environmental impact", color: "blue" },
+      ],
+      full: "Adopting renewable energy sources is crucial to promote sustainable development and reduce the long-term environmental impact of industrial activities."
+    }
   ],
-  8: [
-{ en:"obesity epidemic /oʊˈbiː.sə.t̬i ˌep.ɪˈdem.ɪk/", vn:"dịch béo phì", tick:false },
-{ en:"fattening foods /ˈfæt̬.ən.ɪŋ fuːdz/", vn:"đồ ăn gây béo", tick:false },
-{ en:"processed food /ˈprɑː.sest fuːd/", vn:"thực phẩm chế biến", tick:false },
-{ en:"sugar tax /ˈʃʊɡ.ɚ tæks/", vn:"thuế đường", tick:false },
-{ en:"price intervention /praɪs ˌɪn.t̬ɚˈven.ʃən/", vn:"can thiệp giá", tick:false },
-{ en:"calorie intake /ˈkæl.ɚ.i ˈɪn.teɪk/", vn:"lượng calo nạp vào", tick:false },
-{ en:"sedentary lifestyle /ˈsed.ən.ter.i ˈlaɪf.staɪl/", vn:"lối sống ít vận động", tick:false },
-{ en:"public health crisis /ˈpʌb.lɪk helθ ˈkraɪ.sɪs/", vn:"khủng hoảng sức khỏe cộng đồng", tick:false },
-{ en:"nutritious alternatives /nuːˈtrɪʃ.əs ɔːlˈtɝː.nə.t̬ɪvz/", vn:"lựa chọn dinh dưỡng thay thế", tick:false },
-{ en:"healthy eating habits /ˈhel.θi ˈiː.t̬ɪŋ ˈhæb.ɪts/", vn:"thói quen ăn uống lành mạnh", tick:false },
-{ en:"food affordability /fuːd əˌfɔːr.dəˈbɪl.ə.t̬i/", vn:"khả năng chi trả cho thực phẩm", tick:false },
-{ en:"government subsidy /ˈɡʌv.ɚn.mənt ˈsʌb.sə.di/", vn:"trợ cấp của chính phủ", tick:false },
-{ en:"behavioural change /bɪˈheɪ.vjɚ.əl tʃeɪndʒ/", vn:"thay đổi hành vi", tick:false },
-{ en:"food advertising /fuːd ˈæd.vɚ.taɪ.zɪŋ/", vn:"quảng cáo thực phẩm", tick:false },
-{ en:"nutrition education /nuːˈtrɪʃ.ən ˌedʒ.ʊˈkeɪ.ʃən/", vn:"giáo dục về dinh dưỡng", tick:false },
-{ en:"public awareness campaign /ˈpʌb.lɪk əˈwer.nəs kæmˌpeɪn/", vn:"chiến dịch nâng cao nhận thức cộng đồng", tick:false },
-{ en:"unhealthy food consumption /ʌnˈhel.θi fuːd kənˈsʌmp.ʃən/", vn:"việc tiêu thụ thực phẩm không lành mạnh", tick:false },
-{ en:"financial deterrent /faɪˈnæn.ʃəl dɪˈtɜːr.ənt/", vn:"rào cản tài chính", tick:false },
-{ en:"food policy reform /fuːd ˈpɑː.lə.si rɪˈfɔːrm/", vn:"cải cách chính sách thực phẩm", tick:false },
-{ en:"preventive healthcare /prɪˈven.t̬ɪv ˈhelθ.ker/", vn:"chăm sóc sức khỏe phòng ngừa", tick:false }
-  ],
-  9: [
-{ en:"nutritional guidelines", vn:"hướng dẫn dinh dưỡng", tick:false },
-{ en:"public health crisis", vn:"khủng hoảng sức khỏe cộng đồng", tick:false },
-{ en:"dietary regulations", vn:"quy định về chế độ ăn", tick:false },
-{ en:"processed food", vn:"thức ăn chế biến sẵn", tick:false },
-{ en:"artificial additives", vn:"chất phụ gia nhân tạo", tick:false },
-{ en:"sugar-sweetened beverages", vn:"đồ uống nhiều đường", tick:false },
-{ en:"non-communicable diseases", vn:"bệnh không truyền nhiễm", tick:false },
-{ en:"obesity epidemic", vn:"dịch béo phì", tick:false },
-{ en:"food labeling policies", vn:"chính sách ghi nhãn thực phẩm", tick:false },
-{ en:"diet-related illnesses", vn:"bệnh liên quan đến chế độ ăn uống", tick:false },
-{ en:"health awareness campaigns", vn:"chiến dịch nâng cao nhận thức sức khỏe", tick:false },
-{ en:"government intervention", vn:"sự can thiệp của chính phủ", tick:false },
-{ en:"consumer autonomy", vn:"quyền tự chủ của người tiêu dùng", tick:false },
-{ en:"regulatory framework", vn:"khung pháp lý", tick:false },
-{ en:"fiscal measures", vn:"biện pháp tài khóa", tick:false },
-{ en:"excise tax on unhealthy foods", vn:"thuế tiêu thụ đặc biệt đối với thực phẩm không lành mạnh", tick:false },
-{ en:"mandatory restrictions", vn:"quy định bắt buộc hạn chế", tick:false },
-{ en:"health-conscious choices", vn:"lựa chọn có ý thức về sức khỏe", tick:false },
-{ en:"food availability and affordability", vn:"tính sẵn có và giá cả của thực phẩm", tick:false },
-{ en:"long-term health consequences", vn:"hệ quả sức khỏe lâu dài", tick:false }
-  ],
-  10: [
-{ en:"curate /ˈkjʊr.eɪt/", vn:"tổ chức, biên soạn trưng bày", tick:false },
-{ en:"artifact /ˈɑːr.t̬ə.fækt/", vn:"hiện vật", tick:false },
-{ en:"historical preservation /hɪˈstɔːr.ɪ.kəl ˌprez.ərˈveɪ.ʃən/", vn:"bảo tồn lịch sử", tick:false },
-{ en:"cultural heritage /ˈkʌl.tʃər.əl ˈher.ɪ.tɪdʒ/", vn:"di sản văn hoá", tick:false },
-{ en:"immersive exhibition /ɪˈmɝː.sɪv ˌek.səˈbɪʃ.ən/", vn:"triển lãm tạo cảm giác đắm chìm", tick:false },
-{ en:"interactive display /ˌɪn.t̬ɚˈræk.tɪv dɪˈspleɪ/", vn:"trưng bày tương tác", tick:false },
-{ en:"enthral visitors /ɪnˈθrɑːl ˈvɪz.ɪ.tərz/", vn:"mê hoặc/thu hút khách tham quan", tick:false },
-{ en:"educational mission /ˌedʒ.əˈkeɪ.ʃən.əl ˈmɪʃ.ən/", vn:"sứ mệnh giáo dục", tick:false },
-{ en:"transmit knowledge /trænzˈmɪt ˈnɑː.lɪdʒ/", vn:"truyền tải kiến thức", tick:false },
-{ en:"intellectual enrichment /ˌɪn.təlˈek.tʃu.əl ɪnˈrɪtʃ.mənt/", vn:"bồi dưỡng trí tuệ", tick:false },
-{ en:"public engagement /ˈpʌb.lɪk ɪnˈɡeɪdʒ.mənt/", vn:"sự tham gia của công chúng", tick:false },
-{ en:"visual storytelling /ˈvɪʒ.u.əl ˈstɔːr.i.tel.ɪŋ/", vn:"kể chuyện bằng hình ảnh", tick:false },
-{ en:"conservation effort /ˌkɑːn.sɚˈveɪ.ʃən ˈef.ɚt/", vn:"nỗ lực bảo tồn", tick:false },
-{ en:"digital archive /ˈdɪdʒ.ə.t̬əl ˈɑːr.kaɪv/", vn:"kho tư liệu số", tick:false },
-{ en:"heritage appreciation /ˈher.ɪ.tɪdʒ əˌpriːʃ.iˈeɪ.ʃən/", vn:"trân trọng di sản", tick:false },
-{ en:"visitor engagement /ˈvɪz.ɪ.tər ɪnˈɡeɪdʒ.mənt/", vn:"tương tác của khách tham quan", tick:false },
-{ en:"knowledge dissemination /ˈnɒl.ɪdʒ dɪˌsem.əˈneɪ.ʃən/", vn:"phổ biến kiến thức", tick:false },
-{ en:"hands-on learning /ˌhændzˈɑːn ˈlɝː.nɪŋ/", vn:"học thông qua trải nghiệm trực tiếp", tick:false },
-{ en:"cognitive development /ˈkɑːɡ.nə.t̬ɪv dɪˈvel.əp.mənt/", vn:"phát triển nhận thức", tick:false },
-{ en:"edutainment approach /ˌedʒ.uˈteɪn.mənt əˈproʊtʃ/", vn:"phương thức kết hợp giáo dục và giải trí", tick:false },
-  ],
-  11: [
-{ en:"government subsidy /ˈɡʌv.ən.mənt ˈsʌb.sə.di/", vn:"trợ cấp của chính phủ", tick:false },
-{ en:"public funding /ˈpʌb.lɪk ˈfʌn.dɪŋ/", vn:"nguồn vốn công", tick:false },
-{ en:"state patronage /steɪt ˈpeɪ.trə.nɪdʒ/", vn:"sự bảo trợ của nhà nước", tick:false },
-{ en:"allocate resources /ˈæl.ə.keɪt rɪˈsɔːrsɪz/", vn:"phân bổ nguồn lực", tick:false },
-{ en:"artistic freedom /ɑːrˈtɪs.tɪk ˈfriː.dəm/", vn:"tự do nghệ thuật", tick:false },
-{ en:"cultural enrichment /ˈkʌl.tʃər.əl ɪnˈrɪtʃ.mənt/", vn:"làm phong phú văn hoá", tick:false },
-{ en:"creative industry /kriˈeɪ.t̬ɪv ˈɪn.dəs.tri/", vn:"ngành công nghiệp sáng tạo", tick:false },
-{ en:"philanthropic donation /ˌfɪl.ənˈθrɑː.pɪk doʊˈneɪ.ʃən/", vn:"tài trợ từ thiện", tick:false },
-{ en:"corporate sponsorship /ˈkɔːr.pɚ.ət ˈspɑːn.sɚ.ʃɪp/", vn:"tài trợ từ doanh nghiệp", tick:false },
-{ en:"commercial influence /kəˈmɝː.ʃəl ˈɪn.flu.əns/", vn:"ảnh hưởng thương mại", tick:false },
-{ en:"non-profit organisation /nɑːnˈprɑː.fɪt ˌɔːr.ɡən.aɪˈzeɪ.ʃən/", vn:"tổ chức phi lợi nhuận", tick:false },
-{ en:"grant application /ɡrænt ˌæp.ləˈkeɪ.ʃən/", vn:"đơn xin tài trợ", tick:false },
-{ en:"cultural preservation /ˈkʌl.tʃər.əl ˌprez.ərˈveɪ.ʃən/", vn:"bảo tồn văn hoá", tick:false },
-{ en:"public accountability /ˈpʌb.lɪk əˌkaʊn.t̬əˈbɪl.ə.t̬i/", vn:"trách nhiệm giải trình với công chúng", tick:false },
-{ en:"merit-based selection /ˈmer.ɪt beɪst səˈlek.ʃən/", vn:"lựa chọn dựa trên năng lực", tick:false },
-{ en:"grassroots movement /ˌɡræsˈruːts ˈmuːv.mənt/", vn:"phong trào xuất phát từ cộng đồng", tick:false },
-{ en:"economic constraints /ˌek.əˈnɑː.mɪk kənˈstreɪnts/", vn:"hạn chế kinh tế", tick:false },
-{ en:"cultural identity /ˈkʌl.tʃər.əl aɪˈden.t̬ə.t̬i/", vn:"bản sắc văn hoá", tick:false },
-{ en:"market-driven priorities /ˈmɑːr.kɪt ˌdrɪv.ən praɪˈɔːr.ə.t̬iz/", vn:"ưu tiên dựa trên thị trường", tick:false },
-{ en:"sustainable support model /səˈsteɪ.nə.bəl səˈpɔːrt ˈmɑː.dəl/", vn:"mô hình hỗ trợ bền vững", tick:false },
-  ],
-  12: [
-{ en:"conventional wisdom /kənˈven.ʃən.əl ˈwɪz.dəm/", vn:"quan niệm thông thường, truyền thống", tick:false },
-{ en:"generational divide /ˌdʒen.əˈreɪ.ʃən.əl dɪˈvaɪd/", vn:"khoảng cách giữa các thế hệ", tick:false },
-{ en:"outdated assumptions /aʊtˈdeɪ.t̬ɪd əˈsʌmp.ʃənz/", vn:"giả định lỗi thời", tick:false },
-{ en:"cultural norms /ˈkʌl.tʃər.əl nɔːrmz/", vn:"chuẩn mực văn hóa", tick:false },
-{ en:"rigid mindset /ˈrɪdʒ.ɪd ˈmaɪnd.set/", vn:"lối suy nghĩ cứng nhắc", tick:false },
-{ en:"traditional upbringing /trəˈdɪʃ.ən.əl ˈʌpˌbrɪŋ.ɪŋ/", vn:"nuôi dạy theo lối truyền thống", tick:false },
-{ en:"conformity expectation /kənˈfɔːr.mə.t̬i ˌek.spekˈteɪ.ʃən/", vn:"kỳ vọng tuân theo chuẩn mực", tick:false },
-{ en:"modern-day realities /ˈmɑː.dɚn ˌdeɪ riˈæl.ə.t̬iz/", vn:"thực tế cuộc sống hiện đại", tick:false },
-{ en:"societal progression /səˈsaɪ.ə.t̬əl prəˈɡreʃ.ən/", vn:"sự tiến bộ của xã hội", tick:false },
-{ en:"technological literacy /ˌtek.nəˈlɑː.dʒɪ.kəl ˈlɪt̬.ɚ.ə.si/", vn:"năng lực sử dụng công nghệ", tick:false },
-{ en:"dynamic workforce /daɪˈnæm.ɪk ˈwɝːk.fɔːrs/", vn:"lực lượng lao động linh hoạt", tick:false },
-{ en:"intergenerational tension /ˌɪn.t̬ɚˌdʒen.əˈreɪ.ʃən.əl ˈten.ʃən/", vn:"xung đột giữa thế hệ", tick:false },
-{ en:"adaptability skills /əˌdæp.təˈbɪl.ə.t̬i skɪlz/", vn:"kỹ năng thích nghi", tick:false },
-{ en:"forward-looking attitudes /ˈfɔːr.wɚd ˈlʊk.ɪŋ ˈæt̬.ɪ.tuːdz/", vn:"tư duy hướng tới tương lai", tick:false },
-{ en:"obsolete values /ˈɑːb.səl.iːt ˈvæl.juz/", vn:"giá trị lỗi thời", tick:false },
-{ en:"cultural evolution /ˈkʌl.tʃər.əl ˌev.əˈluː.ʃən/", vn:"tiến hóa văn hóa", tick:false },
-{ en:"value transmission /ˈvæl.juː trænzˈmɪʃ.ən/", vn:"truyền tải giá trị", tick:false },
-{ en:"social flexibility /ˈsoʊ.ʃəl ˌflek.səˈbɪl.ə.t̬i/", vn:"tính linh hoạt xã hội", tick:false },
-{ en:"critical thinking ability /ˈkrɪt̬.ɪ.kəl ˈθɪŋ.kɪŋ əˈbɪl.ə.t̬i/", vn:"khả năng tư duy phản biện", tick:false },
-{ en:"future-ready mindset /ˈfjuː.tʃɚ ˈred.i ˈmaɪnd.set/", vn:"tư duy sẵn sàng cho tương lai", tick:false }
-  ],
-  13: [
-{ en:"financial incentive /faɪˈnæn.ʃəl ɪnˈsen.tɪv/", vn:"động lực tài chính", tick:false },
-{ en:"monetary compensation /ˈmɑː.nə.ter.i ˌkɑːm.penˈseɪ.ʃən/", vn:"thù lao tài chính", tick:false },
-{ en:"competitive salary /kəmˈpet̬.ə.t̬ɪv ˈsæl.ɚ.i/", vn:"mức lương cạnh tranh", tick:false },
-{ en:"financial security /faɪˈnæn.ʃəl sɪˈkjʊr.ə.t̬i/", vn:"sự an toàn tài chính", tick:false },
-{ en:"cost-of-living pressure /ˌkɑːst əv ˈlɪv.ɪŋ ˌpreʃ.ər/", vn:"áp lực chi phí sinh hoạt", tick:false },
-{ en:"career advancement /kəˈrɪr ədˈvæns.mənt/", vn:"thăng tiến nghề nghiệp", tick:false },
-{ en:"professional fulfilment /prəˈfeʃ.ən.əl fʊlˈfɪl.mənt/", vn:"sự mãn nguyện nghề nghiệp", tick:false },
-{ en:"intrinsic motivation /ɪnˈtrɪn.zɪk ˌmoʊ.t̬əˈveɪ.ʃən/", vn:"động lực nội tại", tick:false },
-{ en:"sense of purpose /sens əv ˈpɝː.pəs/", vn:"cảm giác có mục đích", tick:false },
-{ en:"job satisfaction /dʒɑːb ˌsæt̬.ɪsˈfæk.ʃən/", vn:"sự hài lòng công việc", tick:false },
-{ en:"workplace recognition /ˈwɝːk.pleɪs ˌrek.əɡˈnɪʃ.ən/", vn:"sự ghi nhận tại nơi làm việc", tick:false },
-{ en:"supportive environment /səˈpɔːr.t̬ɪv ɪnˈvaɪ.rən.mənt/", vn:"môi trường hỗ trợ", tick:false },
-{ en:"employee retention /ɪmˈplɔɪ.i rɪˈten.ʃən/", vn:"duy trì nhân viên", tick:false },
-{ en:"work–life balance /ˌwɝːkˈlaɪf ˈbæl.əns/", vn:"cân bằng cuộc sống – công việc", tick:false },
-{ en:"burnout prevention /ˈbɝːn.aʊt prɪˈven.ʃən/", vn:"ngăn ngừa kiệt sức", tick:false },
-{ en:"job stability /dʒɑːb stəˈbɪl.ə.t̬i/", vn:"sự ổn định công việc", tick:false },
-{ en:"labour shortage /ˈleɪ.bɚ ˈʃɔːr.t̬ɪdʒ/", vn:"tình trạng thiếu lao động", tick:false },
-{ en:"performance-related pay /pɚˈfɔːr.məns rɪˈleɪ.t̬ɪd peɪ/", vn:"tiền lương gắn với hiệu suất", tick:false },
-{ en:"non-financial rewards /ˌnɑːn faɪˈnæn.ʃəl rɪˈwɔːrdz/", vn:"phần thưởng phi tài chính", tick:false },
-{ en:"employee loyalty /ɪmˈplɔɪ.i ˈlɔɪ.əl.t̬i/", vn:"lòng trung thành của nhân viên", tick:false }
-  ],
-  14: [
-{ en:"job mobility /dʒɑːb moʊˈbɪl.ə.t̬i/", vn:"tính linh động trong công việc", tick:false },
-{ en:"career switching /kəˈrɪr ˈswɪtʃ.ɪŋ/", vn:"chuyển đổi nghề nghiệp", tick:false },
-{ en:"volatile job market /ˈvɑː.lə.t̬əl dʒɑːb ˈmɑːr.kɪt/", vn:"thị trường việc làm biến động", tick:false },
-{ en:"employment instability /ɪmˈplɔɪ.mənt ˌɪn.stəˈbɪl.ə.t̬i/", vn:"bất ổn việc làm", tick:false },
-{ en:"skill diversification /skɪl dɪˌvɝː.sə.fəˈkeɪ.ʃən/", vn:"đa dạng hóa kỹ năng", tick:false },
-{ en:"professional development /prəˈfeʃ.ən.əl dɪˈvel.əp.mənt/", vn:"phát triển nghề nghiệp", tick:false },
-{ en:"upskilling trend /ˈʌp.skɪl.ɪŋ trend/", vn:"xu hướng nâng cao kỹ năng", tick:false },
-{ en:"gig economy /ɡɪɡ ɪˈkɑː.nə.mi/", vn:"nền kinh tế thời vụ", tick:false },
-{ en:"job-hopping culture /ˈdʒɑːb ˌhɑː.pɪŋ ˈkʌl.tʃər/", vn:"văn hóa nhảy việc", tick:false },
-{ en:"workplace dissatisfaction /ˈwɝːk.pleɪs ˌdɪs.sæt.ɪsˈfæk.ʃən/", vn:"sự bất mãn nơi làm việc", tick:false },
-{ en:"limited promotion prospects /ˈlɪm.ɪ.t̬ɪd prəˈmoʊ.ʃən ˈprɑː.spekts/", vn:"cơ hội thăng tiến hạn chế", tick:false },
-{ en:"high turnover rate /haɪ ˈtɝː.noʊ.vɚ reɪt/", vn:"tỉ lệ nghỉ việc cao", tick:false },
-{ en:"flexible working arrangements /ˈflek.sə.bəl ˈwɝː.kɪŋ əˌreɪndʒ.mənts/", vn:"chế độ làm việc linh hoạt", tick:false },
-{ en:"work–life expectations /ˌwɝːkˈlaɪf ˌek.spekˈteɪ.ʃənz/", vn:"kỳ vọng về cân bằng công việc-cuộc sống", tick:false },
-{ en:"career experimentation /kəˈrɪr ˌek.sper.ɪ.menˈteɪ.ʃən/", vn:"thử nghiệm nghề nghiệp", tick:false },
-{ en:"labour market competitiveness /ˈleɪ.bɚ ˌmɑːr.kɪt kəmˈpet̬.ə.t̬ɪv.nəs/", vn:"tính cạnh tranh của thị trường lao động", tick:false },
-{ en:"resume building /ˈrez.ə.meɪ ˈbɪl.dɪŋ/", vn:"tạo dựng hồ sơ nghề nghiệp", tick:false },
-{ en:"psychological burnout /ˌsaɪ.kəˈlɑː.dʒɪ.kəl ˈbɝːn.aʊt/", vn:"kiệt sức tinh thần", tick:false },
-{ en:"portfolio career /ˌpɔːrtˈfoʊ.li.oʊ kəˈrɪr/", vn:"sự nghiệp đa vai trò/đa ngành", tick:false },
-{ en:"long-term employability /lɔːŋ tɝːm ɪmˌplɔɪ.əˈbɪl.ə.t̬i/", vn:"khả năng có việc làm lâu dài", tick:false }
-  ],
-  15: [
-{ en:"reoffending rate /ˌriː.əˈfend.ɪŋ reɪt/", vn:"tỉ lệ tái phạm", tick:false },
-{ en:"criminal rehabilitation /ˈkrɪm.ə.nəl ˌriː.hæb.ɪ.ləˈteɪ.ʃən/", vn:"cải tạo tội phạm", tick:false },
-{ en:"recidivism /rɪˈsɪd.ə.vɪ.zəm/", vn:"tái phạm tội", tick:false },
-{ en:"juvenile offenders /ˈdʒuː.vən.aɪl əˈfendərz/", vn:"tội phạm vị thành niên", tick:false },
-{ en:"hardened criminals /ˈhɑːr.dənd ˈkrɪm.ɪ.nəlz/", vn:"tội phạm nguy hiểm/khó cải tạo", tick:false },
-{ en:"social reintegration /ˌsoʊ.ʃəl ˌriː.ɪn.t̬əˈɡreɪ.ʃən/", vn:"tái hòa nhập xã hội", tick:false },
-{ en:"employment barriers /ɪmˈplɔɪ.mənt ˈber.i.ərz/", vn:"rào cản tìm việc làm", tick:false },
-{ en:"criminal record stigma /ˈstɪɡ.mə/", vn:"kỳ thị hồ sơ tội phạm", tick:false },
-{ en:"substance abuse /ˈsʌb.stəns əˈbjuːs/", vn:"lạm dụng chất kích thích", tick:false },
-{ en:"poverty-driven crime /ˈpɑː.vɚ.t̬i ˈdrɪv.ən kraɪm/", vn:"tội phạm do nghèo đói thúc đẩy", tick:false },
-{ en:"lack of social support /læk əv soʊˈʃæl səˈpɔːrt/", vn:"thiếu hệ thống hỗ trợ xã hội", tick:false },
-{ en:"prison overcrowding /ˈprɪz.ən ˌoʊ.vɚˈkraʊd.ɪŋ/", vn:"nhà tù quá tải", tick:false },
-{ en:"punitive approach /ˈpjuː.nə.t̬ɪv əˈproʊtʃ/", vn:"biện pháp trừng phạt", tick:false },
-{ en:"restorative justice /rɪˈstɔːr.ə.t̬ɪv ˈdʒʌs.tɪs/", vn:"công lý mang tính phục hồi", tick:false },
-{ en:"vocational training /voʊˈkeɪ.ʃən.əl ˈtreɪ.nɪŋ/", vn:"đào tạo nghề", tick:false },
-{ en:"life skills programmes /laɪf skɪlz ˈproʊ.ɡræmz/", vn:"chương trình kỹ năng sống", tick:false },
-{ en:"community supervision /kəˈmjuː.nə.t̬i ˌsuː.pɚˈvɪʒ.ən/", vn:"giám sát cộng đồng", tick:false },
-{ en:"early intervention /ˈɝː.li ˌɪn.t̬ɚˈven.ʃən/", vn:"can thiệp từ sớm", tick:false },
-{ en:"youth mentorship scheme /juːθ ˈmen.tɔːrʃɪp skiːm/", vn:"chương trình cố vấn cho thanh niên", tick:false },
-{ en:"crime prevention strategy /kraɪm prɪˈven.ʃən ˈstræt̬.ə.dʒi/", vn:"chiến lược phòng chống tội phạm", tick:false }
-  ],
-
-
-
-
-
-};
-
-/********** DATA Essay Writing theo topic **********/
-const writingPrompts = {
-  1: [
-    { prompt: "While fossil fuels are still the main source of energy for most countries, others have started to rely on renewable options such as wind and solar power. Is this an advantageous or disadvantageous trend?" }
-  ],
-  2: [
-    { prompt: "Some people believe that university education should be free for everyone. To what extent do you agree or disagree?" },
-  ],
-  3: [
-    { prompt: "The main aim of advertising campaigns is to increase the sales of certain products that people don't really need. To what extent do you agree or disagree?" },
-  ],
-  4: [
-    { prompt: "In some countries, celebrities complain about the way the media publicizes their private lives. Some people say that they should accept it as part of their fame. Do you agree or disagree?" },
-  ],
-  5: [
-    { prompt: "Some human activities have negative effects on plant and animal species. Some people think it is too late to do anything about this problem, while others think effective measures can be taken to improve this situation. Discuss both views and give your opinion." },
-  ],
-  6: [
-    { prompt: "Nowadays, people have expectations to get things instantly (news, products, services) and do not want to wait. What are the reasons for this? Is this a positive or negative development?" },
-  ],
-  7: [
-    { prompt: "It is important for everyone, including young people, to save money for their future. To what extent do you agree or disagree with this statement?" },
-  ],
-  8: [
-    { prompt: "More and more people are becoming seriously overweight. Some people say that the price increase of fattening foods will solve this problem. To what extent do you agree or disagree?" },
-  ],
-  9: [
-    { prompt: "Some people think that shops should not be allowed to sell any food or drink that has scientifically been proven to have bad effects on people's health. To what extent do you agree or disagree with this statement?" },
-  ],
-  10: [
-    { prompt: "Some people think that museums should be enjoyable places to entertain people, while others believe that the purpose of museums is to educate. Discuss both views and give your own opinion." },
-  ],
-  11: [
-    { prompt: "Some people think that governments should give financial support to creative artists such as painters and musicians. Others believe that creative artists should be funded by alternative sources. Discuss both views and give your own opinion." },
-  ],
-  12: [
-    { prompt: "The older generations tend to have very traditional ideas about how people should live, think and behave. However, some people believe that these ideas are not helpful in preparing younger generations for modern life. To what extent do you agree or disagree with this view?" },
-  ],
-  13: [
-    { prompt: "There are several factors that motivate people to stay in the workforce, and money is the most important factor. To what extent do you agree or disagree?" },
-  ],
-  14: [
-    { prompt: "Many young people today change their jobs or careers every few years. Why is this the case? Do the advantages of this trend outweigh the disadvantages?" },
-  ],
-  15: [
-    { prompt: "Many criminals re-offend after they have been punished. Why do some people continue to commit crimes after they have been punished, and what measures can be taken to tackle this problem?" },
-  ],
-
-
-
-
  
+  "Technology": [
+    {
+      vn: "Sự tiến bộ nhanh chóng của trí tuệ nhân tạo có thể đòi hỏi một sự tái cấu trúc cơ bản đối với thị trường việc làm truyền thống trên toàn cầu.",
+      parts: [
+        { vn: "trí tuệ nhân tạo", en: "artificial intelligence", color: "green" },
+        { vn: "đòi hỏi", en: "necessitate", color: "yellow" },
+        { vn: "sự tái cấu trúc", en: "restructuring", color: "blue" },
+        { vn: "thị trường việc làm", en: "job market", color: "pink" }
+      ],
+      full: "The rapid advancement of artificial intelligence may necessitate a fundamental restructuring of the traditional global job market."
+    },
+{
+  vn: "Các chính sách của chính phủ thúc đẩy sự đổi mới trong công nghệ có thể dẫn đến tăng trưởng kinh tế lâu dài.",
+  parts: [
+    { vn: "thúc đẩy", en: "foster", color: "green" },
+    { vn: "sự đổi mới", en: "innovation", color: "yellow" },
+    { vn: "tăng trưởng kinh tế", en: "economic growth", color: "blue" }
+  ],
+  full: "Government policies that foster innovation in technology can lead to long-term economic growth."
+},
+{
+  vn: "Các dự án năng lượng tái tạo có thể tạo ra cơ hội kinh tế bền vững cho các cộng đồng địa phương.",
+  parts: [
+    { vn: "năng lượng tái tạo", en: "renewable energy", color: "pink" },
+    { vn: "tạo ra", en: "generate", color: "green" },
+    { vn: "bền vững", en: "sustainable", color: "blue" },
+    { vn: "các cộng đồng địa phương", en: "local communities", color: "yellow" }
+  ],
+  full: "Renewable energy projects can generate sustainable economic opportunities for local communities."
+},
+  ],
+
+
+
+
+
+
+
+ "Economy-Housing": [
+{
+  vn: "Thuế cao có thể áp đặt áp lực tài chính cho các doanh nghiệp nhỏ.",
+  parts: [
+    { vn: "áp đặt", en: "impose", color: "pink" },
+    { vn: "áp lực tài chính", en: " financial pressure", color: "green" },
+    { vn: "doanh nghiệp nhỏ", en: "small businesses", color: "yellow" }
+  ],
+  full: "High taxes can impose financial pressure on small businesses."
+},
+{
+  vn: "Nếu không được bảo trì đúng cách, cơ sở hạ tầng sẽ trở nên xấu đi nhanh chóng.",
+  parts: [
+    { vn: "bảo trì", en: "maintenance", color: "pink" },
+    { vn: "cơ sở hạ tầng", en: "infrastructure", color: "yellow" },
+    { vn: "sẽ trở nên xấu đi", en: "deteriorate", color: "green" },
+  ],
+  full: "Without proper maintenance, infrastructure will deteriorate rapidly."
+},
+{
+  vn: "Các chi phí chăm sóc sức khỏe tăng đặt gánh nặng đáng kể lên các gia đình có thu nhập thấp.",
+  parts: [
+    { vn: "Các chi phí chăm sóc sức khỏe", en: "healthcare costs", color: "blue" },
+    { vn: "gánh nặng", en: "burden", color: "pink" },
+    { vn: "gia đình có thu nhập thấp", en: "low-income families", color: "yellow" }
+  ],
+  full: "Rising healthcare costs place a significant burden on low-income families."
+},
+
+
+ ],
+
+ "Crime": [
+{
+  vn: "Sự phổ biển ngày càng tăng của tội phạm mạng đòi hỏi việc thực hiện các biện pháp an ninh mạng nghiêm ngặt hơn.",
+  parts: [
+    { vn: "tội phạm mạng", en: "cybercrime", color: "green" },
+    { vn: "đòi hỏi", en: "necessitate", color: "pink" },
+    { vn: "thực hiện", en: "implement", color: "yellow" },
+    { vn: "các biện pháp an ninh mạng", en: "cybersecurity measures", color: "blue" }
+  ],
+  full: "The increasing prevalence of cybercrime necessitates implementing stricter cybersecurity measures."
+},
+{
+  vn: "Hệ thống pháp lý không đầy đủ có thể khiến cho công tác thực thi pháp luật không hiệu quả trong việc ngăn chặn tội phạm.",
+  parts: [
+    { vn: "Hệ thống pháp lý", en: "legal frameworks", color: "pink" },
+    { vn: "khiến cho", en: "render", color: "green" },
+    { vn: "công tác thực thi pháp luật", en: "law enforcement", color: "yellow" },
+    { vn: "ngăn chặn tội phạm", en: "prevent crime", color: "blue" }
+  ],
+  full: "Inadequate legal frameworks can render law enforcement ineffective in preventing crime."
+},
+
+  ],
+
+ "Society": [
+{
+  vn: "Hợp tác quốc tế có thể củng cố các năng lực nghiên cứu và danh tiếng toàn cầu của một quốc gia.",
+  parts: [
+    { vn: "củng cố", en: "bolster", color: "green" },
+    { vn: "các năng lực nghiên cứu", en: "research capabilities", color: "yellow" },
+    { vn: "danh tiếng toàn cầu", en: "global reputation", color: "blue" }
+  ],
+  full: "International collaborations can bolster a country’s research capabilities and global reputation."
+},
+{
+  vn: "Tham nhũng có thể làm xói mòn lòng tin của công chúng vào các cơ quan chính phủ.",
+  parts: [
+    { vn: "Tham nhũng", en: "Corruption", color: "pink" },
+    { vn: "làm xói mòn", en: "erode", color: "green" },
+    { vn: "lòng tin của công chúng", en: "public trust", color: "yellow" },
+    { vn: "các cơ quan chính phủ", en: "government institutions", color: "blue" }
+  ],
+  full: "Corruption can erode public trust in government institutions."
+},
+{
+  vn: "Các chính sách thiếu nhất quán có thể làm suy yếu các nỗ lực giảm nghèo.",
+  parts: [
+    { vn: "thiếu nhất quán", en: "Inconsistent", color: "pink" },
+    { vn: "làm suy yếu", en: "undermine", color: "green" },
+    { vn: "giảm nghèo", en: "reduce poverty", color: "yellow" }
+  ],
+  full: "Inconsistent policies may undermine efforts to reduce poverty."
+},
+{
+  vn: "Các chính sách nhằm giảm bất bình đẳng thu nhập có thể tăng cường sự gắn kết và ổn định xã hội.",
+  parts: [
+    { vn: "bất bình đẳng thu nhập", en: "income inequality", color: "green" },
+    { vn: "tăng cường", en: "strengthen", color: "pink" },
+    { vn: "sự gắn kết", en: "cohesion", color: "yellow" }
+  ],
+  full: "Policies aimed at reducing income inequality can strengthen social cohesion and stability."
+},
+{
+  vn: "Các thủ tục quan liêu thường cản trở việc ra quyết định hiệu quả trong các cơ quan công.",
+  parts: [
+    { vn: "Các thủ tục quan liêu", en: "Bureaucratic procedures", color: "pink" },
+    { vn: "cản trở", en: "hinder", color: "green" },
+    { vn: "việc ra quyết định", en: "decision-making", color: "yellow" },
+    { vn: "các cơ quan công", en: "public institutions", color: "blue" }
+  ],
+  full: "Bureaucratic procedures often hinder efficient decision-making in public institutions."
+},
+
+
+
+
+
+  ],
+
+
+
+
+  "Education": [
+    {
+      vn: "Khuyến khích các dự án nhóm tại trường học có thể thúc đẩy các kỹ năng hợp tác thiết yếu và nâng cao sự phát triển xã hội toàn diện của học sinh.",
+      parts: [
+        { vn: "các dự án nhóm", en: "group projects", color: "yellow" },
+        { vn: "các kỹ năng hợp tác", en: "collaborative skills", color: "blue" },
+        { vn: "nâng cao", en: "enhance", color: "green" },
+        { vn: "sự phát triển xã hội", en: "social development", color: "pink" }
+      ],
+      full: "Encouraging group projects in schools can foster essential collaborative skills and enhance the overall social development of students."
+    },
+{
+  vn: "Các trường học nên nuôi dưỡng kỹ năng tư duy phản biện ở học sinh để chuẩn bị cho những thách thức trong tương lai.",
+  parts: [
+    { vn: "nuôi dưỡng", en: "cultivate", color: "green" },
+    { vn: "tư duy phản biện", en: "critical thinking", color: "yellow" },
+    { vn: "những thách thức trong tương lai", en: "prepare for future challenges", color: "blue" }
+  ],
+  full: "Schools should cultivate critical thinking skills among students to prepare them for future challenges."
+},
+{
+  vn: "Các nền tảng học trực tuyến có thể tạo điều kiện tiếp cận giáo dục chất lượng cho học sinh ở vùng xa.",
+  parts: [
+    { vn: "tạo điều kiện", en: "facilitate", color: "green" },
+    { vn: "giáo dục chất lượng", en: "quality education", color: "yellow" },
+    { vn: "vùng xa", en: "remote areas", color: "blue" }
+  ],
+  full: "Online learning platforms can facilitate access to quality education for students in remote areas."
+},
+{
+  vn: "Việc tích hợp công nghệ hiện đại vào chương trình giảng dạy có thể nâng cao trải nghiệm học tập của học sinh.",
+  parts: [
+    { vn: "Việc tích hợp", en: "incorporating", color: "green" },
+    { vn: "chương trình giảng dạy", en: "curriculum", color: "yellow" },
+    { vn: "nâng cao", en: "enhance", color: "pink" },
+    { vn: "trải nghiệm học tập", en: "students’ learning experiences", color: "blue" }
+  ],
+  full: "Incorporating modern technology into the curriculum can enhance students’ learning experiences."
+},
+
+
+  ],
+
+"Health": [
+{
+  vn: "Các hệ thống y tế không đầy đủ có thể dẫn đến tỷ lệ tử vong cao hơn ở các nhóm dân cư dễ bị tổn thương.",
+  parts: [
+    { vn: "Các hệ thống y tế", en: "healthcare systems", color: "pink" },
+    { vn: "dẫn đến", en: "result in", color: "green" },
+    { vn: "tỷ lệ tử vong", en: "mortality rates", color: "yellow" },
+    { vn: "nhóm dân cư dễ bị tổn thương", en: "vulnerable populations", color: "blue" }
+  ],
+  full: "Inadequate healthcare systems can result in higher mortality rates among vulnerable populations."
+},
+{
+  vn: "Việc tiếp xúc quá mức với căng thẳng có thể làm giảm hiệu quả nhận thức.",
+  parts: [
+    { vn: "Việc tiếp xúc quá mức", en: "Overexposure", color: "pink" },
+    { vn: "làm giảm", en: "diminish", color: "green" },
+    { vn: "hiệu quả nhận thức", en: "cognitive performance", color: "yellow" }
+  ],
+  full: "Overexposure to stress can diminish cognitive performance."
+},
+{
+  vn: "Việc sử dụng màn hình quá mức có thể làm trầm trọng thêm các vấn đề về sức khỏe tâm thần ở các thanh thiếu niên.",
+  parts: [
+    { vn: "Việc sử dụng màn hình", en: "screen time", color: "pink" },
+    { vn: "làm trầm trọng thêm", en: "aggravate", color: "green" },
+    { vn: "các vấn đề về sức khỏe tâm thần", en: "mental health issues", color: "yellow" },
+    { vn: "các thanh thiếu niên", en: "adolescents", color: "blue" }
+  ],
+  full: "Excessive screen time may aggravate mental health issues among adolescents."
+},
+{
+  vn: "Tập thể dục thường xuyên đóng góp vào sức khỏe cả về tinh thần lẫn thể chất.",
+  parts: [
+    { vn: "đóng góp vào", en: "contribute to", color: "green" },
+    { vn: "sức khỏe", en: "well-being", color: "yellow" },
+  ],
+  full: "Regular physical exercise contributes to both mental and physical well-being."
+},
+
+ ],
+
+
+"Work": [
+{
+  vn: "Cấp cho nhân viên quyền ra quyết định trao quyền cho họ chủ động hơn và nâng cao năng suất làm việc.",
+  parts: [
+    { vn: "quyền ra quyết định", en: "decision-making authority", color: "green" },
+    { vn: "trao quyền", en: "empower", color: "pink" },
+    { vn: "chủ động", en: "take initiative", color: "yellow" },
+    { vn: "năng suất làm việc", en: "productivity", color: "blue" }
+  ],
+  full: "Providing employees with decision-making authority empowers them to take initiative and improve productivity."
+},
+{
+  vn: "Khối lượng công việc quá lớn có thể làm choáng ngợp nhân viên, giảm năng suất làm việc.",
+  parts: [
+    { vn: "Khối lượng công việc", en: "workload", color: "pink" },
+    { vn: "làm choáng ngợp", en: "overwhelm", color: "green" },
+    { vn: "năng suất làm việc", en: "productivity", color: "yellow" }
+  ],
+  full: "Excessive workload can overwhelm employees, reducing productivity."
+},
+{
+  vn: "Thất nghiệp tăng có thể làm trầm trọng thêm sự bất bình đẳng xã hội ở các khu vực đô thị.",
+  parts: [
+   { vn: "Thất nghiệp", en: "unemployment", color: "pink" },
+    { vn: "làm trầm trọng thêm", en: "exacerbate", color: "green" },
+    { vn: "sự bất bình đẳng xã hội", en: "social inequality", color: "yellow" },
+    { vn: "khu vực đô thị", en: "urban areas", color: "blue" }
+  ],
+  full: "Rising unemployment can exacerbate social inequality in urban areas."
+},
+{
+  vn: "Việc thực hiện giờ làm việc linh hoạt có thể giảm bớt căng thẳng cho nhân viên.",
+  parts: [
+   { vn: "thực hiện", en: "implement", color: "pink" },
+   { vn: "giờ làm việc", en: "working hours", color: "yellow" },
+   { vn: "giảm bớt căng thẳng", en: "alleviate stress", color: "green" },
+  ],
+  full: "Implementing flexible working hours can alleviate stress among employees."
+},
+
+  ],
+
+"Art & Culture": [
+{
+  vn: "Đầu tư công vào các hoạt động văn hóa có thể kích thích sự sáng tạo và đổi mới trong xã hội.",
+  parts: [
+    { vn: "Đầu tư công", en: "Public investment", color: "pink" },
+    { vn: "kích thích", en: "stimulate", color: "green" },
+    { vn: "sự sáng tạo", en: "creativity", color: "yellow" },
+    { vn: "đổi mới", en: "innovation", color: "blue" }
+  ],
+  full: "Public investment in cultural activities can stimulate creativity and innovation in society."
+},
+{
+  vn: "Toàn cầu hóa đã thúc đẩy nhanh sự mai một văn hóa, khiến nhiều tập quán truyền thống dần biến mất.",
+  parts: [
+    { vn: "Toàn cầu hóa", en: "Globalization", color: "pink" },
+    { vn: "thúc đẩy nhanh", en: "accelerate", color: "pink" },
+    { vn: "sự mai một văn hóa", en: "cultural erosion", color: "green" },
+    { vn: "tập quán truyền thống", en: "traditional practices", color: "yellow" },
+  ],
+  full: "Globalization has accelerated cultural erosion, leading many traditional practices to disappear."
+},
+{
+  vn: "Du lịch đại chúng có thể thúc đẩy sự đồng nhất văn hóa, làm giảm tính độc đáo của các truyền thống địa phương.",
+  parts: [
+    { vn: "Du lịch đại chúng", en: "Mass tourism", color: "pink" },
+    { vn: "sự đồng nhất văn hóa", en: "cultural homogeneity", color: "green" },
+    { vn: "tính độc đáo", en: "uniqueness", color: "yellow" },
+    { vn: "các truyền thống địa phương", en: "local traditions", color: "blue" },
+  ],
+  full: "Mass tourism may promote cultural homogeneity, reducing the uniqueness of local traditions."
+},
+
+
+  ],
+
+
+
+
+
+
+
+
+
+
+
+
+
 };
 
-/********** QUẢN LÝ TỪ VỰNG **********/
-let currentWords = [];
-let originalOrder = [];
+let currentTopic = Object.keys(dataByTopic)[0];
 let currentIndex = 0;
-const wordContainer = document.getElementById('wordContainer');
-const vietWord = document.getElementById('vietWord');
-const answer = document.getElementById('answer');
-const reviewBox = document.getElementById('reviewBox');
 
-function loadWords(topicId) {
-  currentWords = data[topicId].map((item, index) => ({...item, originalIndex: index}));
-  currentIndex = 0;
-  originalOrder = [...currentWords];
+/* ====== TỰ ĐỘNG THÊM OPTION CHO TOPIC SELECT ====== */
+const topicSelect = document.getElementById("topicSelect");
+Object.keys(dataByTopic).sort().forEach(topic => {
+  const opt = document.createElement("option");
+  opt.value = topic;
+  opt.textContent = topic;
+  topicSelect.appendChild(opt);
+});
 
-  renderWordList();
-  if(currentWords.length > 0){
-    vietWord.innerText = currentWords[0].vn;
-    answer.style.display = 'none';
-  }
-}
+/* ====== LOAD HÀM ====== */
+function load() {
+  const topicData = dataByTopic[currentTopic];
+  const item = topicData[currentIndex];
 
-function renderWordList() {
-  wordContainer.innerHTML = '';
-  currentWords.forEach((item) => {
-    const row = document.createElement('div');
-    row.className = 'word-row';
-    
-    const tick = document.createElement('input');
-    tick.type = 'checkbox';
-    tick.className = 'tick-box';
-    tick.checked = item.tick;
-    tick.addEventListener('click', (e) => {
-      e.stopPropagation();
-      item.tick = tick.checked;
-      reorderWord(item);
-      renderWordList();
-    });
-
-    row.appendChild(tick);
-
-    const textSpan = document.createElement('span');
-    textSpan.style.flexGrow = "1";
-    textSpan.innerHTML = `${item.en} - ${item.vn}`;
-    row.appendChild(textSpan);
-
-    row.addEventListener('mouseenter', ()=>{ row.style.backgroundColor="#fffacd"; });
-    row.addEventListener('mouseleave', ()=>{ row.style.backgroundColor=""; });
-
-    wordContainer.appendChild(row);
+  // highlight
+  let html = item.vn;
+  item.parts.forEach(p => {
+    html = html.replace(new RegExp(p.vn, "gi"), `<span class="highlight ${p.color}">${p.vn}</span>`);
   });
+  document.getElementById("vnSentence").innerHTML = html;
+
+  // xóa input cũ
+  const container = document.getElementById("inputs");
+  container.innerHTML = "";
+  item.parts.forEach((p, idx) => {
+    const first = p.en[0];
+    const wc = p.en.split(" ").length;
+    const hint = `${p.vn} (${first}... ; ${wc} word${wc>1?'s':''})`;
+
+    const row = document.createElement("div");
+    row.className = "input-row";
+    row.innerHTML = `
+      <span class="arrow-icon" style="color:${p.color};">➤</span>
+      <input id="box${idx}" placeholder="${hint}">
+      <button onclick="checkWord(${idx})">Check</button>
+      <span id="res${idx}" class="result"></span>
+    `;
+    container.appendChild(row);
+
+    row.querySelector("input").addEventListener("keydown", (e) => {
+      if (e.key === "Enter") {
+        e.preventDefault();
+        checkWord(idx);
+      }
+    });
+  });
+
+  document.getElementById("fullAnswer").value = "";
+  document.getElementById("fullResult").innerHTML = "";
 }
 
-function reorderWord(word) {
-  if(word.tick){
-    currentWords = currentWords.filter(w => w !== word);
-    currentWords.unshift(word);
+/* ====== NÚT CHANGE ====== */
+document.getElementById("changeBtn").onclick = () => {
+  const topicData = dataByTopic[currentTopic];
+  currentIndex = (currentIndex + 1) % topicData.length;
+  load();
+};
+
+/* ====== CHỌN TOPIC ====== */
+topicSelect.value = currentTopic;
+topicSelect.addEventListener("change", (e) => {
+  currentTopic = e.target.value;
+  currentIndex = 0;
+  load();
+});
+
+/* ====== KIỂM TRA TỪ ====== */
+window.checkWord = function(i) {
+  const item = dataByTopic[currentTopic][currentIndex];
+  const user = document.getElementById(`box${i}`).value.trim();
+  const key = item.parts[i].en;
+  const res = document.getElementById(`res${i}`);
+  if (user.toLowerCase() === key.toLowerCase()) {
+    res.innerHTML = `<span class="correct">✔ Correct</span>`;
+    firework();
   } else {
-    currentWords.sort((a,b) => a.originalIndex - b.originalIndex);
+    res.innerHTML = `<span class="wrong">✘ ${key}</span>`;
+  }
+};
+
+/* ====== KIỂM TRA FULL CÂU ====== */
+document.getElementById("submitBtn").onclick = () => {
+  const item = dataByTopic[currentTopic][currentIndex];
+  const user = document.getElementById("fullAnswer").value.trim();
+  const res = document.getElementById("fullResult");
+  if (user.toLowerCase() === item.full.toLowerCase()) {
+    res.innerHTML = `<span class="correct">✔ Correct</span>`;
+    firework();
+  } else {
+    res.innerHTML = `<span class="wrong">✘ ${item.full}</span>`;
+  }
+};
+
+/* ====== ENTER SUBMIT ====== */
+document.getElementById("fullAnswer").addEventListener("keydown", (e) => {
+  if (e.key === "Enter") {
+    e.preventDefault();
+    document.getElementById("submitBtn").click();
+  }
+});
+
+/* ====== PHÁO HOA ====== */
+function firework() {
+  for (let i = 0; i < 25; i++) {
+    const conf = document.createElement("div");
+    conf.className = "confetti";
+    conf.style.setProperty("--x", (Math.random() - 0.5) * 600 + "px");
+    conf.style.setProperty("--y", (Math.random() - 0.5) * 600 + "px");
+    conf.style.backgroundColor = `hsl(${Math.random()*360},90%,60%)`;
+    document.body.appendChild(conf);
+    setTimeout(() => conf.remove(), 900);
   }
 }
 
-function nextWord(){
-  if(currentWords.length === 0) return;
-  currentIndex = (currentIndex + 1) % currentWords.length;
-  vietWord.innerText = currentWords[currentIndex].vn;
-  answer.style.display = 'none';
-}
-
-function know(){
-  if(currentWords.length === 0) return;
-  currentWords[currentIndex].tick = true;
-  reorderWord(currentWords[currentIndex]);
-  renderWordList();
-  nextWord();
-  triggerFirework();
-}
-
-function dontKnow(){
-  if(currentWords.length === 0) return;
-  answer.innerText = currentWords[currentIndex].en;
-  answer.style.display = 'block';
-}
-
-/********** Firework effect **********/
-/********** Firework effect - Bung toả rực rỡ **********/
-function triggerFirework(){
-  const numParticles = 50; // số tia bung ra
-  const centerX = reviewBox.offsetWidth / 2;
-  const centerY = reviewBox.offsetHeight / 2;
-
-  for(let i=0;i<numParticles;i++){
-    const fire = document.createElement('div');
-    fire.className = 'firework';
-    fire.style.background = `hsl(${Math.random()*360}, 100%, 60%)`;
-    fire.style.left = `${centerX}px`;
-    fire.style.top = `${centerY}px`;
-    
-    const angle = Math.random() * 2 * Math.PI;
-    const distance = 80 + Math.random() * 80; // độ dài tia
-    const dx = Math.cos(angle) * distance;
-    const dy = Math.sin(angle) * distance;
-
-    fire.animate([
-      { transform: 'translate(0,0) scale(1)', opacity: 1 },
-      { transform: `translate(${dx}px, ${dy}px) scale(2)`, opacity: 0 }
-    ], { duration: 800, easing: 'ease-out' });
-
-    reviewBox.appendChild(fire);
-    setTimeout(()=>{ fire.remove(); }, 800);
-  }
-}
-
-/********** Switch topic và load prompt essay ngẫu nhiên **********/
-const essayPromptDiv = document.getElementById('essayPrompt');
-const essayText = document.getElementById('essayText');
-const wordListSelect = document.getElementById('wordList');
-
-wordListSelect.addEventListener('change', function() {
-  const topicId = this.value;
-  loadWords(topicId);
-
-  const prompts = writingPrompts[topicId];
-  const randomIndex = Math.floor(Math.random() * prompts.length);
-  essayPromptDiv.innerText = prompts[randomIndex].prompt;
-  essayText.value = '';
-});
-
-/********** LOAD MẶC ĐỊNH KHI MỞ PAGE **********/
-window.addEventListener('DOMContentLoaded', () => {
-  const defaultTopic = wordListSelect.value;
-  loadWords(defaultTopic);
-
-  const prompts = writingPrompts[defaultTopic];
-  const randomIndex = Math.floor(Math.random() * prompts.length);
-  essayPromptDiv.innerText = prompts[randomIndex].prompt;
-  essayText.value = '';
-});
-
-/********** Submit Essay lưu file txt **********/
-function submitEssay() {
-  const text = essayText.value.trim();
-  if(!text) { alert("Vui lòng viết bài essay trước khi Submit."); return; }
-  const blob = new Blob([text], {type: "text/plain;charset=utf-8"});
-  const now = new Date();
-  const filename = `essay_${now.getFullYear()}-${now.getMonth()+1}-${now.getDate()}_${now.getHours()}-${now.getMinutes()}-${now.getSeconds()}.txt`;
-  saveAs(blob, filename);
-  alert("Bài essay đã được lưu thành công!");
-}
+load();
 </script>
 
 </body>
