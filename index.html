@@ -185,11 +185,11 @@ footer {
 }
 
 #essayPrompt {
-  background-color: #f0f7ff;
+  background-color: #FBF3D5;
   border-radius: 10px;
   padding: 5px;
-  font-size: 22px;
-  color: #004d61;
+  font-size: 20px;
+  color: #1B211A;
   text-align: left;
   width: 100%;
 }
@@ -273,7 +273,7 @@ footer {
 
 <header>
   <div class="header-left">
-    <a href="https://ketng91.github.io/lopanhthayket/">
+    <a href="https://ketng91.github.io/ielts.lopanhthayket/">
       <i class="fa-solid fa-house"></i> Lớp Anh thầy Kết
     </a>
   </div>
@@ -407,6 +407,14 @@ function resetTimer(){
   document.getElementById("timer").innerText = "00:00";
 }
 </script>
+<script>
+document.getElementById("wordList").addEventListener("change", () => {
+  resetTimer();     // Dừng và về 00:00
+});
+</script>
+
+
+
 
 
 </body>
